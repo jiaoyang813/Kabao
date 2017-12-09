@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">KabaoApp</string>
+    <string name="app_name">Kabao</string>
+    <item name="visible" type="id"/>
+    <item name="masked" type="id"/>
 </resources>
