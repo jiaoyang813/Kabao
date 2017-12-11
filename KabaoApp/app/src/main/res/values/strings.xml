@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Kabao</string>
-    <item name="visible" type="id"/>
-    <item name="masked" type="id"/>
+    <item name="visible" type="id" />
+    <item name="masked" type="id" />
+
+    <string-array name="bank_array">
+        <item>Chase</item>
+        <item>Bank of America</item>
+        <item>Wells Fargo</item>
+        <item>Citi</item>
+        <item>Discover</item>
+        <item>American Express</item>
+    </string-array>
 </resources>
