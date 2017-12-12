@@ -1,5 +1,6 @@
 package com.oscar.kabaoapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ public class AddCardActivity extends AppCompatActivity {
 
     ArrayList<CreditcardCompany> creditCardCompanies;
 
+    public static final String SELECTEDCARD = "com.oscar.kabaoapp.AddCard.SelectedCard";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,7 @@ public class AddCardActivity extends AppCompatActivity {
         cardListAdapter = new AddCardListAdapter(AddCardActivity.this, creditCardCompanies);
         productListView.setAdapter(cardListAdapter);
 
-        expandAll();
-
+        collapseAll();
         productListView.setOnGroupClickListener(myListGroupClicked);
         productListView.setOnChildClickListener(myListItemClicked);
     }
@@ -63,14 +64,13 @@ public class AddCardActivity extends AppCompatActivity {
 
         public boolean onChildClick(ExpandableListView parent, View v,
                                     int groupPosition, int childPosition, long id) {
-
             //get the group header
             CreditcardCompany company = creditCardCompanies.get(groupPosition);
             //get the child info
             Creditcard creditcard =  company.GetCreditcardProducts().get(childPosition);
-            //display it or do something with it
-            Toast.makeText(getBaseContext(), "Clicked on Detail " + company.GetCompanyName()
-                    + "/" + creditcard.getName(), Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(AddCardActivity.this, EditCardActivity.class);
+            intent.putExtra(SELECTEDCARD, creditcard.getName());
+            startActivity(intent);
             return false;
         }
     };
