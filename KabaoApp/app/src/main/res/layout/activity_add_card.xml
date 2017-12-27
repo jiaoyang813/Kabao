@@ -21,7 +21,6 @@
     <ExpandableListView
         android:id="@+id/available_card_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ExpandableListView>
+        android:layout_height="match_parent"></ExpandableListView>
 
 </LinearLayout>

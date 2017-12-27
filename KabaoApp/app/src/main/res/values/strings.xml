@@ -11,4 +11,8 @@
         <item>Discover</item>
         <item>American Express</item>
     </string-array>
+
+    <string name="bot_nav_home">Home</string>
+    <string name="bot_nav_mycard">MyCard</string>
+    <string name="bot_nav_expense">Expense</string>
 </resources>

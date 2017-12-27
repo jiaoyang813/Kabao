@@ -9,6 +9,7 @@ public class Creditcard {
     private String productName;
     private String cardNo;
     private int sequence;
+    private BankName bankName;
 
     public Creditcard(int id, String productName, String cardNo, int sequence)
     {

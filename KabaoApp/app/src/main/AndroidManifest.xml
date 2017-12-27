@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" >
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".AddCardActivity">
@@ -17,11 +23,7 @@
         </activity>
         <activity android:name=".EditCardActivity" />
         <activity android:name=".ManageCardActivity">
-            <intent-filter>
-            <category android:name="android.intent.category.LAUNCHER" />
 
-            <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
         </activity>
     </application>
 
