@@ -49,8 +49,8 @@ public class ExistingCardListAdapter extends BaseAdapter {
         LayoutInflater inf = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = inf.inflate(R.layout.listitem_existingcard, null);
-        TextView country = (TextView)           view.findViewById(R.id.textView);
-        ImageView icon = (ImageView) view.findViewById(R.id.icon);
+        TextView country = (TextView)view.findViewById(R.id.tv_card_feature_content);
+        ImageView icon = (ImageView)view.findViewById(R.id.icon);
         country.setText(existingCards.get(i).getName());
         //icon.setImageResource();
         return view;

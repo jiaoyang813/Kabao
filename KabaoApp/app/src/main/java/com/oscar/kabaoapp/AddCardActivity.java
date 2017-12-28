@@ -18,7 +18,6 @@ public class AddCardActivity extends AppCompatActivity {
 
     ExpandableListView productListView;
     AddCardListAdapter cardListAdapter;
-
     ArrayList<CreditcardCompany> creditCardCompanies;
 
     public static final String SELECTEDCARD = "com.oscar.kabaoapp.AddCard.SelectedCard";
@@ -46,9 +45,9 @@ public class AddCardActivity extends AppCompatActivity {
             //get the group header
             CreditcardCompany company =  creditCardCompanies.get(groupPosition);
             //display it or do something with it
-            Toast.makeText(getBaseContext(), "Child on Header " + company.GetCompanyName(),
+            /*Toast.makeText(getBaseContext(), "Child on Header " + company.GetCompanyName(),
                     Toast.LENGTH_LONG).show();
-            /*if(productListView.isGroupExpanded(groupPosition))
+            if(productListView.isGroupExpanded(groupPosition))
             {
                 productListView.collapseGroup(groupPosition);
             }else {

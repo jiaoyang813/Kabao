@@ -7,63 +7,158 @@
     tools:context="com.oscar.kabaoapp.EditCardActivity">
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/action_bar_editcard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/card_alias"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nickname" />
-    </android.support.design.widget.TextInputLayout>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <android.support.design.widget.TextInputLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/card_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Card Number" />
-    </android.support.design.widget.TextInputLayout>
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/blue_color"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:text="Card Info"/>
 
-    <android.support.design.widget.TextInputLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/expire_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Expired On" />
-    </android.support.design.widget.TextInputLayout>
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="1dp"
+        android:background="#c0c0c0"
+        />
 
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/statement_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Statement Date" />
-    </android.support.design.widget.TextInputLayout>
+        android:orientation="vertical"
+        android:background="@drawable/card_border"
+        android:padding="10dp"
+        android:layout_margin="5dp">
 
-    <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText android:id="@+id/card_alias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:hint="Card Nickname e.g. Travel Card" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp">
+            <EditText android:id="@+id/card_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:hint="Card Number e.g. 1234 1234 1234 1234" />
+        </android.support.design.widget.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/expire_date_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp">
+                <EditText
+                    android:id="@+id/expire_date"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:hint="Expired On e.g. MM/YY" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp">
+                <EditText
+                    android:id="@+id/ccv_code"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:hint="CCV e.g. 123" />
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/statement_date_wrapper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp">
+                <EditText android:id="@+id/statement_date"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:hint="Statement Date" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="2dp">
+                <EditText android:id="@+id/credit_line"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:hint="Credit Line eg. 500" />
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/blue_color"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:textSize="12sp"
+        android:text="Card Features"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="1dp"
+        android:background="#c0c0c0" />
+
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:minLines="3"
+        android:maxLines="10"
         android:layout_marginBottom="8dp">
-        <EditText android:id="@+id/credit_line"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Credit Line" />
-    </android.support.design.widget.TextInputLayout>
+    </EditText>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_savecard"

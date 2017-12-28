@@ -18,4 +18,10 @@
     <color name="base">#AAAAAA</color>
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
+
+
+    <color name="blue_color">#5D8BF2</color>
+    <color name="blue_color_gradient">#3545AE</color>
+
+    <color name="light_blue">#3c5d8bf2</color>
 </resources>
