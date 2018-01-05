@@ -8,20 +8,19 @@ import java.util.ArrayList;
 
 public class CreditcardCompany {
 
-    private ArrayList<Creditcard> creditcardProducts;
-
+    private ArrayList<CreditCardTemplate> creditcardProducts;
     private int companyId;
+    private int companyLogoRId;
+    private BankName companyName;
 
-    private String companyName;
-
-    public CreditcardCompany(int companyId, String companyName)
+    public CreditcardCompany(int companyId, BankName companyName)
     {
         this.companyId = companyId;
         this.companyName = companyName;
         creditcardProducts = new ArrayList<>();
     }
 
-    public ArrayList<Creditcard> GetCreditcardProducts()
+    public ArrayList<CreditCardTemplate> GetCreditcardProducts()
     {
         return creditcardProducts;
     }
@@ -31,14 +30,31 @@ public class CreditcardCompany {
         return companyId;
     }
 
-    public String GetCompanyName()
+    public BankName GetCompanyName()
     {
         return companyName;
     }
 
-    public void AddProduct(Creditcard creditcard)
+    public int getCompanyLogoRId() {
+        return companyLogoRId;
+    }
+
+    public void setCompanyLogoRId(int companyLogoRId) {
+        this.companyLogoRId = companyLogoRId;
+    }
+
+    public void AddProduct(CreditCardTemplate creditcard)
     {
         creditcardProducts.add(creditcard);
     }
+
+    public void AddProducts(ArrayList<CreditCardTemplate> creditcards)
+    {
+        for (CreditCardTemplate card: creditcards) {
+            AddProduct(card);
+        }
+    }
+
+
 
 }

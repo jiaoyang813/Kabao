@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.oscar.kabaoapp.R;
+import com.oscar.kabaoapp.dataObject.CreditCardTemplate;
 import com.oscar.kabaoapp.dataObject.Creditcard;
 import com.oscar.kabaoapp.dataObject.CreditcardCompany;
 
@@ -43,7 +45,7 @@ public class AddCardListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        Creditcard creditcard =
+        CreditCardTemplate creditcard =
                 ((CreditcardCompany)getGroup(groupPosition)).GetCreditcardProducts().get(childPosition);
         return creditcard;
     }
@@ -74,14 +76,17 @@ public class AddCardListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView heading = view.findViewById(R.id.creditcardcompany_name);
-        heading.setText(creditcardCompany.GetCompanyName().trim());
+        heading.setText(creditcardCompany.GetCompanyName().toString());
+
+        ImageView bankImage = view.findViewById(R.id.expandablelist_group_image);
+        bankImage.setBackgroundResource(creditcardCompany.getCompanyLogoRId());
 
         return view;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        Creditcard creditcard = (Creditcard) getChild(groupPosition, childPosition);
+        CreditCardTemplate creditcard = (CreditCardTemplate) getChild(groupPosition, childPosition);
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater)
                     context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -89,8 +94,9 @@ public class AddCardListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView childItem =  convertView.findViewById(R.id.creditcarditem);
-        childItem.setText(creditcard.getName().trim());
-
+        childItem.setText(creditcard.getProductName().trim());
+        ImageView cardImage = convertView.findViewById(R.id.card_image);
+        cardImage.setBackgroundResource(creditcard.getCardImageRId());
         return convertView;
     }
 

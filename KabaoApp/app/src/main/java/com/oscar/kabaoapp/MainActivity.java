@@ -1,28 +1,116 @@
 package com.oscar.kabaoapp;
 
-import android.app.Fragment;
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.oscar.kabaoapp.DAO.CreditCardDao_Impl;
+import com.oscar.kabaoapp.Database.AppDatabase;
+import com.oscar.kabaoapp.Database.KabaoDatabase;
+import com.oscar.kabaoapp.ViewModel.AddedCreditCardViewModel;
+import com.oscar.kabaoapp.dataObject.BankName;
+import com.oscar.kabaoapp.dataObject.Creditcard;
+import com.oscar.kabaoapp.dataObject.PaymentType;
+import com.oscar.kabaoapp.dataObject.User;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    private final int AddCardCode = 10000;
+    AddedCreditCardViewModel addedCreditCardViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setupNavigationView();
-
+        //setupNavigationView();
         Toolbar myToolbar = findViewById(R.id.action_bar_main);
         setSupportActionBar(myToolbar);
+        pushFragment(new MycardFragment());
+        addedCreditCardViewModel = ViewModelProviders.of(this).get(AddedCreditCardViewModel.class);
+        addedCreditCardViewModel.getAllCards().observe(this, new Observer<List<Creditcard>>() {
+            @Override
+            public void onChanged(@Nullable List<Creditcard> creditcards) {
+                MycardFragment mycardFragment = MycardFragment.newInstance(new ArrayList(creditcards));
+                pushFragment(mycardFragment);
+            }
+        });
+        //new KabaoDBTestTask().execute(KabaoDatabase.getKabaoDatabase(this));
+    }
+
+   private class KabaoDBTestTask extends AsyncTask<KabaoDatabase, Void, Void>{
+       @Override
+       protected Void doInBackground(KabaoDatabase... kabaoDatabases) {
+           testKabaoDB(kabaoDatabases[0]);
+           return null;
+       }
+   }
+
+   private static void testKabaoDB(KabaoDatabase db)
+   {
+       Creditcard card = new Creditcard();
+       card.setPaymentTypeLogoRId(R.drawable.new_visa_big);
+       card.setPaymentType(PaymentType.Visa);
+       card.setExpiredOn("02/22");
+       card.setCcv("123");
+       card.setCrediLine("400");
+       card.setCardImageRId(R.drawable.ic_placeholder);
+       card.setStmtDate("12");
+       card.setCardNo("111111111111111111");
+       card.setBankName(BankName.Chase);
+       card.setProductName("Chase Freedom");
+
+       db.creditCardDao().insertCard(card);
+       Creditcard[] cards = db.creditCardDao().loadAllCard();
+
+       cards[0].setCardNo("22222222222222222");
+       db.creditCardDao().updateCard(cards[0]);
+       cards = db.creditCardDao().loadAllCard();
+
+       db.creditCardDao().deleteCard(cards[0]);
+       cards = db.creditCardDao().loadAllCard();
+
+
+   }
+
+    private class TestDBTask extends AsyncTask<AppDatabase, Void, Void> {
+        @Override
+        protected Void doInBackground(AppDatabase... appDatabases) {
+            populateWithTestData(appDatabases[0]);
+            return null;
+        }
+    }
+
+    private static void populateWithTestData(AppDatabase db) {
+        User user = new User();
+        user.setFirstName("yang");
+        user.setLastName("j");
+        db.userDao().insertUsers(user);
+
+        User[] users = db.userDao().loadAllUsers();
+        users[0].setLastName("y");
+        db.userDao().updateUsers(users[0]);
+
+        users = db.userDao().loadAllUsers();
+        db.userDao().deleteUsers(user);
+
+        users = db.userDao().loadAllUsers();
     }
 
     @Override
@@ -37,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_add_card:
                 Intent intent = new Intent(this, AddCardActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, AddCardCode);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -45,7 +133,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setupNavigationView() {
+  /*  @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ((requestCode == 10000) && (resultCode == Activity.RESULT_OK))
+            // recreate your fragment here
+        {
+            pushFragment(new MycardFragment());
+        }
+    }*/
+
+  /*  private void setupNavigationView() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         if (bottomNavigationView != null) {
 
@@ -63,14 +162,14 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
         }
-    }
+    }*/
 
     /**
      * Perform action when any item is selected.
      *
      * @param item Item that is selected.
      */
-    protected void selectFragment(MenuItem item) {
+    /*protected void selectFragment(MenuItem item) {
 
         item.setChecked(true);
 
@@ -88,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                 pushFragment(new ExpenseFragment());
                 break;
         }
-    }
+    }*/
 
     /**
      * Method to push any fragment into given id.
@@ -99,9 +198,9 @@ public class MainActivity extends AppCompatActivity {
         if (fragment == null)
             return;
 
-        FragmentManager fragmentManager = getFragmentManager();
+         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager != null) {
-            FragmentTransaction ft = fragmentManager.beginTransaction();
+            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
             if (ft != null) {
                 ft.replace(R.id.main_fragment_container, fragment);
                 ft.commit();

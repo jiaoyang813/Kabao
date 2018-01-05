@@ -1,5 +1,6 @@
 package com.oscar.kabaoapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +8,10 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
+import com.oscar.kabaoapp.DataProvider.CompanyStaticDataProvider;
 import com.oscar.kabaoapp.DataProvider.MockCreditCardDataProvider;
+import com.oscar.kabaoapp.dataObject.BankName;
+import com.oscar.kabaoapp.dataObject.CreditCardTemplate;
 import com.oscar.kabaoapp.dataObject.Creditcard;
 import com.oscar.kabaoapp.dataObject.CreditcardCompany;
 import com.oscar.kabaoapp.listadapter.AddCardListAdapter;
@@ -20,13 +24,17 @@ public class AddCardActivity extends AppCompatActivity {
     AddCardListAdapter cardListAdapter;
     ArrayList<CreditcardCompany> creditCardCompanies;
 
-    public static final String SELECTEDCARD = "com.oscar.kabaoapp.AddCard.SelectedCard";
+    public static final String ProductName = "com.oscar.kabaoapp.AddCard.ProductName";
+    public static final String BankName = "com.oscar.kabaoapp.AddCard.BankName";
+    public static final String PaymentType = "com.oscar.kabaoapp.AddCard.PaymentType";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
-        loadFakeData();
+        //loadFakeData();
+        loadStaticData();
         productListView = findViewById(R.id.available_card_listview);
         cardListAdapter = new AddCardListAdapter(AddCardActivity.this, creditCardCompanies);
         productListView.setAdapter(cardListAdapter);
@@ -66,10 +74,15 @@ public class AddCardActivity extends AppCompatActivity {
             //get the group header
             CreditcardCompany company = creditCardCompanies.get(groupPosition);
             //get the child info
-            Creditcard creditcard =  company.GetCreditcardProducts().get(childPosition);
+            CreditCardTemplate creditcard =  company.GetCreditcardProducts().get(childPosition);
             Intent intent = new Intent(AddCardActivity.this, EditCardActivity.class);
-            intent.putExtra(SELECTEDCARD, creditcard.getName());
+            intent.putExtra(ProductName, creditcard.getProductName());
+            intent.putExtra(BankName, creditcard.getBankName().toString());
+            intent.putExtra(PaymentType, creditcard.getPaymentType().toString());
+
             startActivity(intent);
+            setResult(Activity.RESULT_OK);
+            finish();
             return false;
         }
     };
@@ -87,9 +100,14 @@ public class AddCardActivity extends AppCompatActivity {
         }
     }
 
-    private void loadFakeData()
+   /* private void loadFakeData()
     {
         MockCreditCardDataProvider dataProvider = new MockCreditCardDataProvider();
         creditCardCompanies = dataProvider.getAllCompanies();
+    }*/
+
+    private void loadStaticData()
+    {
+        creditCardCompanies = CompanyStaticDataProvider.AllCompanies;
     }
 }

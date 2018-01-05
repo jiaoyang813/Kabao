@@ -10,8 +10,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:src="@drawable/chasebank"/>
+        android:layout_marginStart="30dp"/>
     <TextView
         android:id="@+id/creditcardcompany_name"
         android:layout_width="wrap_content"

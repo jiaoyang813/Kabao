@@ -13,8 +13,7 @@
         android:layout_alignParentTop="true"
         android:padding="5dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:src="@drawable/new_visa_big" />
+        android:layout_marginStart="30dp" />
     <TextView
         android:id="@+id/creditcarditem"
         android:minWidth="80sp"

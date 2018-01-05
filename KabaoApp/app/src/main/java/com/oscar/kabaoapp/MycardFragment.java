@@ -1,19 +1,25 @@
 package com.oscar.kabaoapp;
 
-import android.app.Fragment;
-import android.content.Context;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.oscar.kabaoapp.DataProvider.MockCreditCardDataProvider;
+import com.oscar.kabaoapp.ViewModel.AddedCreditCardViewModel;
 import com.oscar.kabaoapp.dataObject.Creditcard;
 import com.oscar.kabaoapp.listadapter.ExistingCardListAdapter;
-
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -27,38 +33,30 @@ import java.util.ArrayList;
 public class MycardFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String EXISTING_CARDS = "existingCards";
+
+    private AddedCreditCardViewModel mCardsViewModel;
 
     private ArrayList<Creditcard> existingCards;
     private ExistingCardListAdapter cardListAdapter;
     private ListView existingCardListView;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
     public MycardFragment() {
         // Required empty public constructor
-
     }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment MycardFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MycardFragment newInstance(String param1, String param2) {
+    public static MycardFragment newInstance(ArrayList<Creditcard> existingCards) {
         MycardFragment fragment = new MycardFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelableArrayList(EXISTING_CARDS,existingCards);
         fragment.setArguments(args);
         return fragment;
     }
@@ -67,8 +65,7 @@ public class MycardFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            existingCards = getArguments().getParcelableArrayList(EXISTING_CARDS);
         }
     }
 
@@ -76,10 +73,8 @@ public class MycardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mycard, container, false);
-
-        loadFakeData();
-        cardListAdapter = new ExistingCardListAdapter(getActivity(), existingCards);
-        existingCardListView = view.findViewById(R.id.listview_mycard);
+        cardListAdapter = new ExistingCardListAdapter(getActivity(),existingCards);
+        existingCardListView =  view.findViewById(R.id.listview_mycard);
         existingCardListView.setAdapter(cardListAdapter);
         // Inflate the layout for this fragment
         return view;
@@ -91,6 +86,7 @@ public class MycardFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
+
 
 
     @Override
@@ -114,9 +110,10 @@ public class MycardFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private void loadFakeData()
-    {
-        MockCreditCardDataProvider dataProvider = new MockCreditCardDataProvider();
-        existingCards = dataProvider.getExistingCards();
-    }
+//    private void loadFakeData()
+//    {
+//        MockCreditCardDataProvider dataProvider = new MockCreditCardDataProvider();
+//        existingCards = dataProvider.getExistingCards();
+//    }
+
 }

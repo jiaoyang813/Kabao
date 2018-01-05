@@ -57,4 +57,5 @@ public class ManageCardActivity extends AppCompatActivity {
         MockCreditCardDataProvider dataProvider = new MockCreditCardDataProvider();
         existingCards = dataProvider.getExistingCards();
     }
+
 }
