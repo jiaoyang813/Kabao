@@ -1,4 +1,4 @@
-package com.oscar.kabaoapp.listadapter;
+package com.oscar.kabaoapp.OnClickListener;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.view.View;

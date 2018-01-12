@@ -1,0 +1,4 @@
+1. Use credit card in card edit activity to enable card edit feature
+2. Create card detail view
+3. favorite card feature.
+4. better card feature view.

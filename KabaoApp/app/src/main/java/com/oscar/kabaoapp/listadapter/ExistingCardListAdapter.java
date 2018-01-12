@@ -1,21 +1,19 @@
 package com.oscar.kabaoapp.listadapter;
 
-import android.app.Application;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.oscar.kabaoapp.Common.ImageUtility;
 import com.oscar.kabaoapp.MainActivity;
-import com.oscar.kabaoapp.MycardFragment;
+import com.oscar.kabaoapp.OnClickListener.CardDetailViewOnClickListener;
+import com.oscar.kabaoapp.OnClickListener.DeleteCardOnClickListener;
 import com.oscar.kabaoapp.R;
-import com.oscar.kabaoapp.Repositories.CreditCardRepository;
 import com.oscar.kabaoapp.ViewModel.AddedCreditCardViewModel;
 import com.oscar.kabaoapp.dataObject.Creditcard;
 
@@ -78,38 +76,48 @@ public class ExistingCardListAdapter extends BaseAdapter {
         String last4DigitsCardNo = "";
         if(cardNo.length() > 4)
         {
-           last4DigitsCardNo = cardNo.substring(cardNo.length()-5, cardNo.length()-1);
+           last4DigitsCardNo = cardNo.substring(cardNo.length()-4, cardNo.length());
         }
         cardName.setText(card.getProductName() + "(..." +last4DigitsCardNo+")");
 
-        ImageView paymentTypeLogo = view.findViewById(R.id.card_paymenttype_logo);
-        paymentTypeLogo.setBackgroundResource(card.getPaymentTypeLogoRId());
-
+        //ImageView paymentTypeLogo = view.findViewById(R.id.card_paymenttype_logo);
+        //paymentTypeLogo.setBackgroundResource(card.getPaymentTypeLogoRId());
+        //ImageUtility.scaleImage(25, 50, card.getPaymentTypeLogoRId(), paymentTypeLogo, view);
         ImageView cardImage = view.findViewById(R.id.card_image);
         cardImage.setBackgroundResource(card.getCardImageRId());
+        ImageUtility.scaleImage(128, 200, card.getCardImageRId(), cardImage, view);
+        //TextView cardFeature = view.findViewById(R.id.tv_card_feature_content);
+        //cardFeature.setText(card.getCardFeatures());
 
-        TextView cardFeature = view.findViewById(R.id.tv_card_feature_content);
-        cardFeature.setText(card.getCardFeatures());
-
-        TextView stmtDate = view.findViewById(R.id.tv_card_stmt_dt);
+        TextView stmtDate = view.findViewById(R.id.card_stmt_dt);
         Date today = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(today);
-        int month = cal.get(Calendar.MONTH);
+        int month = cal.get(Calendar.MONTH) + 1;
+
+        String monthStr = month < 10 ? "0"+month : Integer.toString(month);
+
         //TODO change date according to statment date
-        stmtDate.setText(card.getStmtDate() + "/" + monthName[month]);
+        stmtDate.setText("Statement Date (dd/mm): " +  card.getStmtDate() + "/" + monthStr);
 
-        TextView delete = view.findViewById(R.id.tv_delete_card);
+        view.setOnClickListener(new CardDetailViewOnClickListener(card));
 
-        AddedCreditCardViewModel viewModel =
-                ViewModelProviders.of(mainActivity).get(AddedCreditCardViewModel.class);
+        //TextView delete = view.findViewById(R.id.tv_delete_card);
 
-        delete.setOnClickListener(new DeleteCardOnClickListener(viewModel, card));
+        //AddedCreditCardViewModel viewModel =
+        //        ViewModelProviders.of(mainActivity).get(AddedCreditCardViewModel.class);
+
+        //delete.setOnClickListener(new DeleteCardOnClickListener(viewModel, card));
+
+
+        //TextView cardDetail = view.findViewById(R.id.show_detail);
+       // cardDetail.setOnClickListener(new CardDetailViewOnClickListener(card));
 
         //icon.setImageResource();
         return view;
 
 
     }
+
 
 }

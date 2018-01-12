@@ -19,10 +19,14 @@
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
 
-
-    <color name="blue_color">#5D8BF2</color>
+    <color name="blue_color">#3a83ea</color>
     <color name="blue_color_gradient">#3545AE</color>
 
     <color name="light_blue">#3c5d8bf2</color>
     <color name="red_color">#f75b68</color>
+
+    <color name="color_orange">#ffbf10</color>
+    <color name="black_transparent">#33000000</color>
+    <color name="gray_transparent">#58e2e2e2</color>
+    <color name="color_view_line">#c0c0c0</color>
 </resources>

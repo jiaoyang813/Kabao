@@ -25,9 +25,13 @@ public class AddCardActivity extends AppCompatActivity {
     ArrayList<CreditcardCompany> creditCardCompanies;
 
     public static final String ProductName = "com.oscar.kabaoapp.AddCard.ProductName";
-    public static final String BankName = "com.oscar.kabaoapp.AddCard.BankName";
+    public static final String CardImageRId = "com.oscar.kabaoapp.AddCard.CardImageRId";
     public static final String PaymentType = "com.oscar.kabaoapp.AddCard.PaymentType";
+    public static final String PaymentTypeLogoRId = "com.oscar.kabaoapp.AddCard.PaymentTypeLogoRId";
+    public static final String BankName = "com.oscar.kabaoapp.AddCard.BankName";
+    public static final String CardFeatures = "com.oscar.kabaoapp.AddCard.CardFeatures";
 
+    public static final String CardTemplate = "com.oscar.kabaoapp.AddCard.CardTemplate";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +80,7 @@ public class AddCardActivity extends AppCompatActivity {
             //get the child info
             CreditCardTemplate creditcard =  company.GetCreditcardProducts().get(childPosition);
             Intent intent = new Intent(AddCardActivity.this, EditCardActivity.class);
-            intent.putExtra(ProductName, creditcard.getProductName());
-            intent.putExtra(BankName, creditcard.getBankName().toString());
-            intent.putExtra(PaymentType, creditcard.getPaymentType().toString());
+            intent.putExtra(CardTemplate, creditcard);
 
             startActivity(intent);
             setResult(Activity.RESULT_OK);

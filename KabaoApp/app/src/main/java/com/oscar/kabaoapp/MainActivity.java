@@ -12,20 +12,27 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.oscar.kabaoapp.DAO.CreditCardDao_Impl;
 import com.oscar.kabaoapp.Database.AppDatabase;
 import com.oscar.kabaoapp.Database.KabaoDatabase;
+import com.oscar.kabaoapp.OnClickListener.AddNewCardOnClickListener;
 import com.oscar.kabaoapp.ViewModel.AddedCreditCardViewModel;
 import com.oscar.kabaoapp.dataObject.BankName;
 import com.oscar.kabaoapp.dataObject.Creditcard;
 import com.oscar.kabaoapp.dataObject.PaymentType;
 import com.oscar.kabaoapp.dataObject.User;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setupActionBar();
         //setupNavigationView();
-        Toolbar myToolbar = findViewById(R.id.action_bar_main);
-        setSupportActionBar(myToolbar);
+
         pushFragment(new MycardFragment());
         addedCreditCardViewModel = ViewModelProviders.of(this).get(AddedCreditCardViewModel.class);
         addedCreditCardViewModel.getAllCards().observe(this, new Observer<List<Creditcard>>() {
@@ -51,7 +58,26 @@ public class MainActivity extends AppCompatActivity {
                 pushFragment(mycardFragment);
             }
         });
-        //new KabaoDBTestTask().execute(KabaoDatabase.getKabaoDatabase(this));
+
+    }
+
+    private void setupActionBar()
+    {
+        Toolbar myToolbar = findViewById(R.id.action_bar_main);
+        setSupportActionBar(myToolbar);
+
+        Toolbar.LayoutParams lp1 = new Toolbar.LayoutParams(Toolbar.LayoutParams.MATCH_PARENT, Toolbar.LayoutParams.MATCH_PARENT);
+        View customNav = LayoutInflater.from(this).inflate(R.layout.actionbar_item_main, null);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(customNav, lp1);
+
+
+        // action bar menu option click listener
+        TextView addCard = findViewById(R.id.actionbar_main_add);
+        addCard.setOnClickListener(new AddNewCardOnClickListener());
+
     }
 
    private class KabaoDBTestTask extends AsyncTask<KabaoDatabase, Void, Void>{
@@ -85,35 +111,9 @@ public class MainActivity extends AppCompatActivity {
 
        db.creditCardDao().deleteCard(cards[0]);
        cards = db.creditCardDao().loadAllCard();
-
-
    }
 
-    private class TestDBTask extends AsyncTask<AppDatabase, Void, Void> {
-        @Override
-        protected Void doInBackground(AppDatabase... appDatabases) {
-            populateWithTestData(appDatabases[0]);
-            return null;
-        }
-    }
-
-    private static void populateWithTestData(AppDatabase db) {
-        User user = new User();
-        user.setFirstName("yang");
-        user.setLastName("j");
-        db.userDao().insertUsers(user);
-
-        User[] users = db.userDao().loadAllUsers();
-        users[0].setLastName("y");
-        db.userDao().updateUsers(users[0]);
-
-        users = db.userDao().loadAllUsers();
-        db.userDao().deleteUsers(user);
-
-        users = db.userDao().loadAllUsers();
-    }
-
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.action_bar_managecard, menu);
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }
-    }
+    }*/
 
   /*  @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)

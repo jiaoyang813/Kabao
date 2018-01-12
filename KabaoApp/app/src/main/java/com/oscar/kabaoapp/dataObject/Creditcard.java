@@ -17,6 +17,7 @@ import android.os.Parcelable;
 public class Creditcard implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private int id;
+    private String cardNickname;
     private String productName;
     private int cardImageRId;
     private PaymentType paymentType;
@@ -31,7 +32,6 @@ public class Creditcard implements Parcelable {
 
     public Creditcard()
     {
-
     }
 
     protected Creditcard(Parcel in) {
@@ -68,6 +68,15 @@ public class Creditcard implements Parcelable {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getCardNickname() {
+        return cardNickname;
+    }
+
+    public void setCardNickname(String cardNickname) {
+        this.cardNickname = cardNickname;
+    }
+
 
     public String getCardNo() {
         return cardNo;

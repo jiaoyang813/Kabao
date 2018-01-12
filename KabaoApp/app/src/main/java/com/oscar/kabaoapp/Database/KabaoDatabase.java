@@ -17,7 +17,7 @@ import com.oscar.kabaoapp.dataObject.BankNameTypeConverter;
 import com.oscar.kabaoapp.dataObject.Creditcard;
 import com.oscar.kabaoapp.dataObject.User;
 
-@Database(entities= {Creditcard.class}, version = 2)
+@Database(entities= {Creditcard.class}, version = 1)
 @TypeConverters({BankNameTypeConverter.class})
 public abstract class KabaoDatabase extends RoomDatabase {
     private static KabaoDatabase INSTANCE;
