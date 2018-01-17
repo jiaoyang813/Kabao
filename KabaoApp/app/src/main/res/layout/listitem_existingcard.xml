@@ -45,35 +45,6 @@
             android:layout_height="128dp"
             android:adjustViewBounds="true"
             android:contentDescription="credit card image" />
-       <!-- <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/tv_card_feature_label"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:textSize="12sp"/>
-            <TextView
-                android:id="@+id/tv_card_feature_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minLines="3"
-                android:maxLines="5"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:textSize="12sp"/>
-        </LinearLayout>-->
     </LinearLayout>
 
     <View

@@ -5,6 +5,13 @@
     android:layout_gravity="center"
     android:orientation="horizontal">
 
+    <ImageView
+        android:id="@+id/actionbar_item_addcard_alert"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"/>
 
     <TextView
         android:id="@+id/actionbar_main_title"
@@ -14,7 +21,8 @@
         android:textAlignment="center"
         android:text="My Card"
         android:textSize="20sp"
-        android:textColor="@color/color_orange"/>
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/actionbar_main_add"
@@ -27,5 +35,7 @@
         android:textSize="20sp"
         android:textAlignment="textEnd"
         android:textColor="@color/color_orange"
-        android:layout_marginRight="20dp"/>
+        android:layout_marginEnd="20dp"/>
+
+
 </RelativeLayout>

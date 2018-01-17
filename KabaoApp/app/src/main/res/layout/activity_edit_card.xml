@@ -41,7 +41,7 @@
                 android:textColor="@color/color_orange"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:text="Card Basic Info"/>
+                android:text="Basic Info"/>
 
             <View
                 android:layout_width="match_parent"
@@ -156,7 +156,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 android:textSize="12sp"
-                android:text="Card Benefits"/>
+                android:text="Benefits"/>
 
             <View
                 android:layout_width="match_parent"
@@ -175,21 +175,6 @@
                 android:maxLines="10"
                 android:layout_marginBottom="8dp">
             </EditText>
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_savecard"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:padding="12dp"
-                android:text="Save"/>
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_deletecard"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Delete"/>
 
         </LinearLayout>
     </ScrollView>

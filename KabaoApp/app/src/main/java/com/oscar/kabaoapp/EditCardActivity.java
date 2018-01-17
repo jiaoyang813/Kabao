@@ -19,9 +19,6 @@ import com.oscar.kabaoapp.dataObject.Creditcard;
 import org.w3c.dom.Text;
 
 public class EditCardActivity extends AppCompatActivity {
-
-    private Button saveButton;
-    private Button deleteCardButton;
     private EditText cardNickname;
     private EditText cardNo;
     private EditText expiredOn;
@@ -47,16 +44,22 @@ public class EditCardActivity extends AppCompatActivity {
         creditLine = findViewById(R.id.credit_line);
         cardFeature = findViewById(R.id.textedit_card_features);
 
+        TextView save = findViewById(R.id.actionbar_item_addcard_save);
 
-        saveButton = findViewById(R.id.btn_savecard);
-        deleteCardButton = findViewById(R.id.btn_deletecard);
-
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Creditcard card = CreateCreditCard();
                 CreditCardRepository creditCardRepository = new CreditCardRepository(getApplication());
                 creditCardRepository.InsertCard(card);
+                finish();
+            }
+        });
+
+        TextView cancel = findViewById(R.id.actionbar_item_addcard_cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 finish();
             }
         });

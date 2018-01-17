@@ -1,9 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.oscar.kabaoapp.CardDetailView">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/appbackground"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/action_bar_carddetailview"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/black_transparent"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        android:contentInsetLeft="0dp"
+        android:contentInsetStart="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetEnd="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetEnd="0dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+        android:id="@+id/carddetail_cardimage"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="1dp"
+        android:background="@color/color_view_line"
+        />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="20dp"
+    android:padding="5dp">
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Card Detail"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textStyle="bold"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text="CARD NO:" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start" />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textStyle="bold"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text="CCV:" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text="Number of Visits" />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textStyle="bold"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text="Expired date:" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text="Number of Visits" />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textStyle="bold"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text="Name on card:" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text="Number of Visits" />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="start"
+                android:text="Bank:" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text=" " />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textStyle="bold"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text="Statement date:" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text=" " />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textStyle="bold"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text="Open date:" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text=" " />
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:textStyle="bold"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text="Note:" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:textSize="@dimen/card_detail_fontSize"
+                android:textColor="@color/white"
+                android:gravity="start"
+                android:text=" " />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
+
+
+</LinearLayout>

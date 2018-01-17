@@ -6,37 +6,36 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/actionbar_item_addcard_cancel"
+        android:id="@+id/actionbar_item_carddetailview_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:text="Cancel"
+        android:text="Edit"
         android:textSize="20sp"
         android:textColor="@color/color_orange"
-        android:layout_marginStart="20dp"/>
+        android:layout_marginLeft="20dp"/>
 
     <TextView
-        android:id="@+id/actionbar_editcard_title"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Add Card"
+        android:text="Card Info"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/actionbar_item_addcard_save"
+        android:id="@+id/actionbar_item_carddetailview_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:text="Save"
+        android:text="Done"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textAlignment="textEnd"
         android:textColor="@color/color_orange"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginRight="20dp"/>
 </RelativeLayout>

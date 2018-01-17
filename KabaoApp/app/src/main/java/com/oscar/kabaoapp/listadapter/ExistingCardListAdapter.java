@@ -100,7 +100,9 @@ public class ExistingCardListAdapter extends BaseAdapter {
         //TODO change date according to statment date
         stmtDate.setText("Statement Date (dd/mm): " +  card.getStmtDate() + "/" + monthStr);
 
-        view.setOnClickListener(new CardDetailViewOnClickListener(card));
+        ImageView detailIcon = view.findViewById(R.id.show_detail);
+
+        detailIcon.setOnClickListener(new CardDetailViewOnClickListener(card));
 
         //TextView delete = view.findViewById(R.id.tv_delete_card);
 

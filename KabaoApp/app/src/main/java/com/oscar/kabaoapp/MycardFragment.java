@@ -19,6 +19,7 @@ import com.oscar.kabaoapp.dataObject.Creditcard;
 import com.oscar.kabaoapp.listadapter.ExistingCardListAdapter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -40,6 +41,8 @@ public class MycardFragment extends Fragment {
     private ArrayList<Creditcard> existingCards;
     private ExistingCardListAdapter cardListAdapter;
     private ListView existingCardListView;
+
+    public static HashMap<Integer, Boolean> cardFlipStatus;
 
     private OnFragmentInteractionListener mListener;
 
@@ -73,11 +76,27 @@ public class MycardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mycard, container, false);
+
+        populateCardFlipStatus();
+
         cardListAdapter = new ExistingCardListAdapter(getActivity(),existingCards);
         existingCardListView =  view.findViewById(R.id.listview_mycard);
         existingCardListView.setAdapter(cardListAdapter);
         // Inflate the layout for this fragment
         return view;
+    }
+
+    private void populateCardFlipStatus()
+    {
+        if(existingCards == null)
+            return;
+
+        cardFlipStatus = new HashMap<>();
+
+        for(Creditcard card : existingCards)
+        {
+            cardFlipStatus.put(card.getId(), false);
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

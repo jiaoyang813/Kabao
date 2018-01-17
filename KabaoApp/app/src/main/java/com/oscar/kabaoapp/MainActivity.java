@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         if (fragment == null)
             return;
 
-         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager != null) {
             android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
             if (ft != null) {
