@@ -32,4 +32,6 @@ public class AddedCreditCardViewModel extends AndroidViewModel {
     public void insert(Creditcard card){ creditCardRepository.InsertCard(card);}
 
     public void delete(Creditcard card) { creditCardRepository.DeleteCard(card);}
+
+    public void update(Creditcard card) { creditCardRepository.UpdateCard(card);}
 }

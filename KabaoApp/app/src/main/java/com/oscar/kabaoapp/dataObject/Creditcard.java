@@ -36,6 +36,7 @@ public class Creditcard implements Parcelable {
 
     protected Creditcard(Parcel in) {
         id = in.readInt();
+        cardNickname = in.readString();
         productName = in.readString();
         cardImageRId = in.readInt();
         paymentType = PaymentType.valueOf(in.readString());
@@ -172,6 +173,7 @@ public class Creditcard implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
+        dest.writeString(cardNickname);
         dest.writeString(productName);
         dest.writeInt(cardImageRId);
         dest.writeString(paymentType.toString());

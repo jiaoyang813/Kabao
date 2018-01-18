@@ -20,10 +20,10 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".AddCardActivity"></activity>
+        <activity android:name=".AddCardActivity" />
         <activity android:name=".EditCardActivity" />
-        <activity android:name=".ManageCardActivity"></activity>
-        <activity android:name=".CardDetailView"></activity>
+        <activity android:name=".CardDetailView" />
+        <activity android:name=".EditExistingCardActivity"></activity>
     </application>
 
 </manifest>

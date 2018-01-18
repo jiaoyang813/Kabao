@@ -176,6 +176,14 @@
                 android:layout_marginBottom="8dp">
             </EditText>
 
+            <Button
+                android:id="@+id/editcard_removecardButton"
+                android:visibility="gone"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Remove Card"
+                android:textColor="@color/red_color"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

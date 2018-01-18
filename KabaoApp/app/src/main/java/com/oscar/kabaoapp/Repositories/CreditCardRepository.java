@@ -84,4 +84,13 @@ public class CreditCardRepository {
         }
     }
 
+
+    public void UpdateCard(Creditcard card) { new UpdateCardTask().execute(card);}
+    private static class UpdateCardTask extends AsyncTask<Creditcard, Void, Void> {
+        @Override
+        protected Void doInBackground(Creditcard... creditcard) {
+            creditCardDao.updateCard(creditcard);
+            return null;
+        }
+    }
 }

@@ -16,10 +16,11 @@ import com.oscar.kabaoapp.Repositories.CreditCardRepository;
 import com.oscar.kabaoapp.dataObject.CreditCardTemplate;
 import com.oscar.kabaoapp.dataObject.Creditcard;
 
-import org.w3c.dom.Text;
+public class EditExistingCardActivity extends AppCompatActivity {
+    public static final String ExistingCard = "com.oscar.kabaoapp.EditExistingCard";
+    public static final int RESULT_UPDATE = 8001;
+    public static final int RESULT_DELETE = 8002;
 
-// Edit new card.
-public class EditCardActivity extends AppCompatActivity {
     private EditText cardNickname;
     private EditText cardNo;
     private EditText expiredOn;
@@ -27,15 +28,17 @@ public class EditCardActivity extends AppCompatActivity {
     private EditText stmtDate;
     private EditText creditLine;
     private TextView cardFeature;
+    private Button removeCard;
 
-    private CreditCardTemplate cardTemplate;
+    private Creditcard card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_card);
-
         setupActionBar();
+
+        setupRemoveCardButton();
 
         cardNo = findViewById(R.id.card_number);
         expiredOn = findViewById(R.id.expire_date);
@@ -44,31 +47,27 @@ public class EditCardActivity extends AppCompatActivity {
         creditLine = findViewById(R.id.credit_line);
         cardFeature = findViewById(R.id.textedit_card_features);
 
-        TextView save = findViewById(R.id.actionbar_item_addcard_save);
-
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Creditcard card = CreateCreditCard();
-                CreditCardRepository creditCardRepository = new CreditCardRepository(getApplication());
-                creditCardRepository.InsertCard(card);
-                finish();
-            }
-        });
-
-        TextView cancel = findViewById(R.id.actionbar_item_addcard_cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         Intent intent = getIntent();
-        cardTemplate = intent.getParcelableExtra(AddCardActivity.CardTemplate);
+        card = intent.getParcelableExtra(EditExistingCardActivity.ExistingCard);
         cardNickname = findViewById(R.id.card_alias);
-        cardNickname.setText(cardTemplate.getProductName());
-        cardFeature.setText(cardTemplate.getCardFeatures());
+        cardNickname.setText(card.getProductName());
+        cardFeature.setText(card.getCardFeatures());
+    }
+
+    private void setupRemoveCardButton()
+    {
+        removeCard = findViewById(R.id.editcard_removecardButton);
+        removeCard.setVisibility(View.VISIBLE);
+        removeCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                CreditCardRepository creditCardRepository = new CreditCardRepository(getApplication());
+                creditCardRepository.DeleteCard(card);
+                setResult(RESULT_DELETE);
+                finish();
+            }
+        });
     }
 
     private void setupActionBar()
@@ -82,25 +81,40 @@ public class EditCardActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(customNav, lp1);
+
+        TextView save = findViewById(R.id.actionbar_item_addcard_save);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateCreditCard();
+                CreditCardRepository creditCardRepository = new CreditCardRepository(getApplication());
+                creditCardRepository.UpdateCard(card);
+                finish();
+            }
+        });
+
+        TextView cancel = findViewById(R.id.actionbar_item_addcard_cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
-    private Creditcard CreateCreditCard()
+    private void updateCreditCard()
     {
-        Creditcard card = new Creditcard();
         card.setCardNickname(cardNickname.getText().toString());
-        card.setProductName(cardTemplate.getProductName());
-        card.setCardImageRId(cardTemplate.getCardImageRId());
-        card.setPaymentType(cardTemplate.getPaymentType());
-        card.setPaymentTypeLogoRId(cardTemplate.getPaymentTypeLogoRId());
-        card.setBankName(cardTemplate.getBankName());
+        card.setProductName(card.getProductName());
+        card.setCardImageRId(card.getCardImageRId());
+        card.setPaymentType(card.getPaymentType());
+        card.setPaymentTypeLogoRId(card.getPaymentTypeLogoRId());
+        card.setBankName(card.getBankName());
         card.setCardFeatures(cardFeature.getText().toString());
         card.setCardNo(cardNo.getText().toString());
         card.setStmtDate(stmtDate.getText().toString());
         card.setCrediLine(creditLine.getText().toString());
         card.setCcv(ccv.getText().toString());
         card.setExpiredOn(expiredOn.getText().toString());
-
-        return card;
     }
-
 }
