@@ -57,8 +57,7 @@
                 android:orientation="vertical"
                 android:background="@drawable/card_border"
                 android:padding="10dp"
-                android:layout_margin="5dp"
-                android:backgroundTint="@color/iron">
+                android:layout_margin="5dp" >
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"

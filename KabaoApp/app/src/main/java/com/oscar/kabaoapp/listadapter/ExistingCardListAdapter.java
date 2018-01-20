@@ -2,6 +2,7 @@ package com.oscar.kabaoapp.listadapter;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,14 +107,19 @@ public class ExistingCardListAdapter extends BaseAdapter {
     {
         final ImageView cardImage = view.findViewById(R.id.card_image);
         cardImage.setBackgroundResource(card.getCardImageRId());
-        ImageUtility.scaleImage(128, 200, card.getCardImageRId(), cardImage, view);
+        int[] heightAndwidthAjusted = ImageUtility.scaleImage(128, 200, card.getCardImageRId(), cardImage, view);
 
         final RelativeLayout cardbackview = view.findViewById(R.id.cardquickview);
+        ViewGroup.LayoutParams params = cardbackview.getLayoutParams();
+         // Changes the height and width to the specified *pixels*
+        params.height = heightAndwidthAjusted[0];
+        params.width =  heightAndwidthAjusted[1];
+        cardbackview.setLayoutParams(params);
 
         ImageView quickview_paymenttypeimage = view.findViewById(R.id.quickview_paymenttypeimage);
         quickview_paymenttypeimage.setBackgroundResource(card.getPaymentTypeLogoRId());
 
-        ImageUtility.scaleImage(25, 25,
+        ImageUtility.scaleImage(40, 40,
                 card.getPaymentTypeLogoRId(), quickview_paymenttypeimage, view);
 
         TextView quickview_cardnumber = view.findViewById(R.id.quickview_cardnumber);

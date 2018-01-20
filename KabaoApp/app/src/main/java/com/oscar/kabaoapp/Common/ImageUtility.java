@@ -9,7 +9,7 @@ import android.widget.ImageView;
  */
 
 public class ImageUtility {
-    public static void scaleImage(int maxHeight, int maxWidth, int imageRid, ImageView image, View view)
+    public static int[] scaleImage(int maxHeight, int maxWidth, int imageRid, ImageView image, View view)
     {
         int imageHeight = 0;
         int imageWdith = 0;
@@ -28,8 +28,16 @@ public class ImageUtility {
             imageWdith = (int)(actualWidth / (actualHeight * 1.0) * maxHeight);
         }
 
-        image.getLayoutParams().height = (int)(imageHeight * scale);
-        image.getLayoutParams().width =(int) (imageWdith * scale);
+        int imageAdjustedHeight = (int)(imageHeight * scale);
+        int imageAdjustedWdith = (int) (imageWdith * scale);
+
+        image.getLayoutParams().height =imageAdjustedHeight;
+        image.getLayoutParams().width =imageAdjustedWdith;
+
+        int[] heightAndwidth = new int[2];
+        heightAndwidth[0] = imageAdjustedHeight;
+        heightAndwidth[1] =imageAdjustedWdith;
+        return heightAndwidth;
     }
 
 }

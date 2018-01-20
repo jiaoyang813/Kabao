@@ -23,8 +23,8 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="128dp"
         android:gravity="center_horizontal">
 
         <ImageView
@@ -37,8 +37,8 @@
             android:id="@+id/cardquickview"
             android:layout_width="200dp"
             android:layout_height="128dp"
-            android:background="@drawable/card_border"
-            android:backgroundTint="@color/iron">
+            android:adjustViewBounds="true"
+            android:background="@drawable/card_border">
             <TextView
                 android:id="@+id/quickview_cardnumber"
                 android:layout_width="160dp"
