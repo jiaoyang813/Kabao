@@ -37,9 +37,9 @@ public class EditExistingCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_card);
         setupActionBar();
-
         setupRemoveCardButton();
 
+        cardNickname = findViewById(R.id.card_alias);
         cardNo = findViewById(R.id.card_number);
         expiredOn = findViewById(R.id.expire_date);
         ccv = findViewById(R.id.ccv_code);
@@ -49,8 +49,24 @@ public class EditExistingCardActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         card = intent.getParcelableExtra(EditExistingCardActivity.ExistingCard);
-        cardNickname = findViewById(R.id.card_alias);
-        cardNickname.setText(card.getProductName());
+        setupUI(card);
+    }
+
+    private void setupUI(Creditcard card)
+    {
+        if(card.getCardNickname().equals(""))
+        {
+            cardNickname.setText(card.getProductName());
+        }
+        else {
+            cardNickname.setText(card.getCardNickname());
+        }
+
+        cardNo.setText(card.getCardNo());
+        expiredOn.setText(card.getExpiredOn());
+        ccv.setText(card.getCcv());
+        stmtDate.setText(card.getStmtDate());
+        creditLine.setText(card.getCrediLine());
         cardFeature.setText(card.getCardFeatures());
     }
 

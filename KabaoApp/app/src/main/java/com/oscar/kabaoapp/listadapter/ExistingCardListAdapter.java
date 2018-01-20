@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.oscar.kabaoapp.Common.ImageUtility;
@@ -71,6 +72,8 @@ public class ExistingCardListAdapter extends BaseAdapter {
 
         Creditcard card = existingCards.get(i);
 
+        setupCardQuickView(view, card);
+
         TextView cardName = view.findViewById(R.id.tv_card_name);
         String cardNo = card.getCardNo();
         String last4DigitsCardNo = "";
@@ -80,14 +83,7 @@ public class ExistingCardListAdapter extends BaseAdapter {
         }
         cardName.setText(card.getProductName() + "(..." +last4DigitsCardNo+")");
 
-        //ImageView paymentTypeLogo = view.findViewById(R.id.card_paymenttype_logo);
-        //paymentTypeLogo.setBackgroundResource(card.getPaymentTypeLogoRId());
-        //ImageUtility.scaleImage(25, 50, card.getPaymentTypeLogoRId(), paymentTypeLogo, view);
-        ImageView cardImage = view.findViewById(R.id.card_image);
-        cardImage.setBackgroundResource(card.getCardImageRId());
-        ImageUtility.scaleImage(128, 200, card.getCardImageRId(), cardImage, view);
-        //TextView cardFeature = view.findViewById(R.id.tv_card_feature_content);
-        //cardFeature.setText(card.getCardFeatures());
+
 
         TextView stmtDate = view.findViewById(R.id.card_stmt_dt);
         Date today = new Date();
@@ -101,23 +97,52 @@ public class ExistingCardListAdapter extends BaseAdapter {
         stmtDate.setText("Statement Date (dd/mm): " +  card.getStmtDate() + "/" + monthStr);
 
         ImageView detailIcon = view.findViewById(R.id.show_detail);
-
         detailIcon.setOnClickListener(new CardDetailViewOnClickListener(card));
-
-        //TextView delete = view.findViewById(R.id.tv_delete_card);
-
-        //AddedCreditCardViewModel viewModel =
-        //        ViewModelProviders.of(mainActivity).get(AddedCreditCardViewModel.class);
-
-        //delete.setOnClickListener(new DeleteCardOnClickListener(viewModel, card));
-
-
-        //TextView cardDetail = view.findViewById(R.id.show_detail);
-       // cardDetail.setOnClickListener(new CardDetailViewOnClickListener(card));
-
-        //icon.setImageResource();
         return view;
 
+    }
+
+    private void setupCardQuickView(View view, Creditcard card)
+    {
+        final ImageView cardImage = view.findViewById(R.id.card_image);
+        cardImage.setBackgroundResource(card.getCardImageRId());
+        ImageUtility.scaleImage(128, 200, card.getCardImageRId(), cardImage, view);
+
+        final RelativeLayout cardbackview = view.findViewById(R.id.cardquickview);
+
+        ImageView quickview_paymenttypeimage = view.findViewById(R.id.quickview_paymenttypeimage);
+        quickview_paymenttypeimage.setBackgroundResource(card.getPaymentTypeLogoRId());
+
+        ImageUtility.scaleImage(25, 25,
+                card.getPaymentTypeLogoRId(), quickview_paymenttypeimage, view);
+
+        TextView quickview_cardnumber = view.findViewById(R.id.quickview_cardnumber);
+        quickview_cardnumber.setText(card.getCardNo());
+
+        TextView quickview_expiredate = view.findViewById( R.id.quickview_expiredate);
+        quickview_expiredate.setText("Expire " + card.getExpiredOn());
+
+        TextView quickview_ccv = view.findViewById(R.id.quickview_ccv);
+        quickview_ccv.setText("ccv " + card.getCcv());
+
+        cardbackview.setVisibility(View.GONE);
+
+
+        cardImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardImage.setVisibility(View.GONE);
+                cardbackview.setVisibility(View.VISIBLE);
+            }
+        });
+
+        cardbackview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardImage.setVisibility(View.VISIBLE);
+                cardbackview.setVisibility(View.GONE);
+            }
+        });
 
     }
 

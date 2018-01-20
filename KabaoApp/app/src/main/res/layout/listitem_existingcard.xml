@@ -10,16 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-       <!--<ImageView
-           android:id="@+id/mycard_staricon"
-           android:layout_width="15dp"
-           android:layout_height="wrap_content"
-           android:maxHeight="15dp"
-           android:layout_alignParentStart="true"
-           android:layout_marginEnd="10dp"
-           android:adjustViewBounds="true"
-           android:src="@drawable/start_unselected"/>-->
-
        <TextView
            android:id="@+id/tv_card_name"
            android:layout_width="wrap_content"
@@ -32,12 +22,10 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        >
+        android:gravity="center_horizontal">
 
         <ImageView
             android:id="@+id/card_image"
@@ -45,7 +33,49 @@
             android:layout_height="128dp"
             android:adjustViewBounds="true"
             android:contentDescription="credit card image" />
-    </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/cardquickview"
+            android:layout_width="200dp"
+            android:layout_height="128dp"
+            android:background="@drawable/card_border"
+            android:backgroundTint="@color/iron">
+            <TextView
+                android:id="@+id/quickview_cardnumber"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@color/white"
+                android:text="card number"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/quickview_expiredate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:text="Expire"
+                android:textStyle="italic"
+                android:textSize="10sp"/>
+
+            <TextView
+                android:id="@+id/quickview_ccv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_marginStart="80dp"
+                android:text="ccv"
+                android:textStyle="italic"
+                android:textSize="10sp"/>
+
+            <ImageView
+                android:id="@+id/quickview_paymenttypeimage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
