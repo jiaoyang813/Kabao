@@ -13,11 +13,11 @@ import com.oscar.kabaoapp.dataObject.Creditcard;
 
 public class CardDetailViewOnClickListener implements View.OnClickListener {
 
-    private Creditcard cardToDisplay;
+    private int cardId;
 
-    public CardDetailViewOnClickListener(Creditcard card)
+    public CardDetailViewOnClickListener(int cardId)
     {
-        cardToDisplay = card;
+        this.cardId = cardId;
     }
 
 
@@ -25,7 +25,7 @@ public class CardDetailViewOnClickListener implements View.OnClickListener {
     public void onClick(View v) {
 
         Intent intent = new Intent(v.getContext(), CardDetailView.class);
-        intent.putExtra(CardDetailView.CardDetail, cardToDisplay);
+        intent.putExtra(CardDetailView.CardDetail, cardId);
         v.getContext().startActivity(intent);
     }
 }

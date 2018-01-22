@@ -24,6 +24,8 @@ public interface CreditCardDao {
     @Query("SELECT * FROM usercreditcards")
     Creditcard[] loadAllCard();
 
+    @Query("SELECT * FROM usercreditcards where id = :cardId LIMIT 1")
+    LiveData<Creditcard> loadCardById(int cardId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertCard(Creditcard... card);

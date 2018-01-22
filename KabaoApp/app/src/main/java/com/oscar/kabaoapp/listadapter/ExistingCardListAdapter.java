@@ -84,8 +84,6 @@ public class ExistingCardListAdapter extends BaseAdapter {
         }
         cardName.setText(card.getProductName() + "(..." +last4DigitsCardNo+")");
 
-
-
         TextView stmtDate = view.findViewById(R.id.card_stmt_dt);
         Date today = new Date();
         Calendar cal = Calendar.getInstance();
@@ -98,7 +96,7 @@ public class ExistingCardListAdapter extends BaseAdapter {
         stmtDate.setText("Statement Date (dd/mm): " +  card.getStmtDate() + "/" + monthStr);
 
         ImageView detailIcon = view.findViewById(R.id.show_detail);
-        detailIcon.setOnClickListener(new CardDetailViewOnClickListener(card));
+        detailIcon.setOnClickListener(new CardDetailViewOnClickListener(card.getId()));
         return view;
 
     }

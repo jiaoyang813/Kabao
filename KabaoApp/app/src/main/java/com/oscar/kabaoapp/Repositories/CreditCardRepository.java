@@ -31,28 +31,15 @@ public class CreditCardRepository {
 
     public LiveData<List<Creditcard>> getMyCards(){return myCards;}
 
-    public Creditcard[] GetAll() {
-        new LoadAllCardTask().execute();
-        return allcards;
+    public LiveData<Creditcard> getCardById(int id){
+        LiveData<Creditcard> card = creditCardDao.loadCardById(id);
+        return card;
     }
 
 
     public void InsertCard(Creditcard card)
     {
         new InsertCardTask(creditCardDao).execute(card);
-    }
-
-    private class LoadAllCardTask extends  AsyncTask<Void, Void, Creditcard[]>{
-        @Override
-        protected Creditcard[] doInBackground(Void... voids) {
-            return creditCardDao.loadAllCard();
-        }
-
-        @Override
-        protected void onPostExecute(Creditcard[] creditcards) {
-            super.onPostExecute(creditcards);
-            allcards = creditcards;
-        }
     }
 
     private class InsertCardTask extends AsyncTask<Creditcard, Void, Void> {

@@ -6,12 +6,15 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.oscar.kabaoapp.Common.TextValidator;
 import com.oscar.kabaoapp.Repositories.CreditCardRepository;
 import com.oscar.kabaoapp.dataObject.CreditCardTemplate;
 import com.oscar.kabaoapp.dataObject.Creditcard;
@@ -36,8 +39,8 @@ public class EditCardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_card);
 
         setupActionBar();
+        setupCardNumber();
 
-        cardNo = findViewById(R.id.card_number);
         expiredOn = findViewById(R.id.expire_date);
         ccv = findViewById(R.id.ccv_code);
         stmtDate = findViewById(R.id.statement_date);
@@ -69,6 +72,50 @@ public class EditCardActivity extends AppCompatActivity {
         cardNickname = findViewById(R.id.card_alias);
         cardNickname.setText(cardTemplate.getProductName());
         cardFeature.setText(cardTemplate.getCardFeatures());
+    }
+
+    private void setupCardNumber()
+    {
+        cardNo = findViewById(R.id.card_number);
+        cardNo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(!TextValidator.IsCardNoValid(cardNo))
+                {
+
+                }
+
+                //cardNo.setText(addSpaceInCardNumber(cardNo.getText().toString()));
+
+            }
+        });
+    }
+
+    private String addSpaceInCardNumber(String cardNo)
+    {
+        String cardNumberNoSpace = cardNo.replaceAll("\\s", "");
+
+        int part = cardNumberNoSpace.length()/4;
+
+        String cardNumberAjusted = "";
+
+        for (int i = 0; i < part; i++)
+        {
+            int endIndex = Math.min((i+1)*4, cardNumberNoSpace.length() - 1);
+            cardNumberAjusted += cardNumberNoSpace.substring(i * 4, endIndex);
+        }
+
+        return cardNumberAjusted;
     }
 
     private void setupActionBar()

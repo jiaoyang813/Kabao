@@ -1,8 +1,11 @@
 package com.oscar.kabaoapp;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 
 import com.oscar.kabaoapp.Common.ImageUtility;
 import com.oscar.kabaoapp.OnClickListener.AddNewCardOnClickListener;
+import com.oscar.kabaoapp.Repositories.CreditCardRepository;
 import com.oscar.kabaoapp.ViewModel.AddedCreditCardViewModel;
 import com.oscar.kabaoapp.dataObject.Creditcard;
 
@@ -26,7 +30,7 @@ import java.util.List;
 
 public class CardDetailView extends AppCompatActivity {
 
-    public static final String CardDetail = "com.oscar.kabaoapp.CardDetail";
+    public static final String CardDetail = "com.oscar.kabaoapp.CardId";
 
     private static final int REQUESTCODE_EDITCARD = 7001;
 
@@ -38,8 +42,20 @@ public class CardDetailView extends AppCompatActivity {
         setContentView(R.layout.activity_card_detail_view);
         setupActionBar();
         Intent intent = getIntent();
-        card = intent.getParcelableExtra(CardDetailView.CardDetail);
-        setupUI();
+        int cardId = intent.getIntExtra(CardDetail, -1);
+
+        if(cardId>0)
+        {
+            CreditCardRepository creditCardRepository = new CreditCardRepository(this.getApplication());
+            creditCardRepository.getCardById(cardId).observe(this, new Observer<Creditcard>() {
+                @Override
+                public void onChanged(@Nullable Creditcard creditcard) {
+                    card = creditcard;
+                    setupUI();
+                }
+            });
+        }
+
     }
 
 
@@ -115,6 +131,7 @@ public class CardDetailView extends AppCompatActivity {
         {
             if(resultCode == EditExistingCardActivity.RESULT_DELETE)
             {
+                setupUI();
                 finish();
             }
 
