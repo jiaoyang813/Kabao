@@ -72,7 +72,7 @@ public class CardDetailView extends AppCompatActivity {
         cardno.setText(card.getCardNo());
 
         TextView ccv = findViewById(R.id.carddetailview_ccv);
-        ccv.setText(card.getCcv());
+        ccv.setText(card.getCvv());
 
         TextView expiredDate = findViewById(R.id.carddetailview_expireddate);
         expiredDate.setText(card.getExpiredOn());

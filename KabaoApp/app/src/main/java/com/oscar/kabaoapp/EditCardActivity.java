@@ -1,19 +1,30 @@
 package com.oscar.kabaoapp;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.oscar.kabaoapp.Common.CreditCardNoRule;
+import com.oscar.kabaoapp.Common.CreditCardNoRuleBuilder;
 import com.oscar.kabaoapp.Common.TextValidator;
 import com.oscar.kabaoapp.Repositories.CreditCardRepository;
 import com.oscar.kabaoapp.dataObject.CreditCardTemplate;
@@ -21,18 +32,22 @@ import com.oscar.kabaoapp.dataObject.Creditcard;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Field;
+import java.time.Month;
+import java.util.Calendar;
+
 // Edit new card.
 public class EditCardActivity extends AppCompatActivity {
     private EditText cardNickname;
     private EditText cardNo;
     private EditText expiredOn;
-    private EditText ccv;
+    private EditText cvv;
     private EditText stmtDate;
     private EditText creditLine;
     private TextView cardFeature;
 
     private CreditCardTemplate cardTemplate;
-
+    private final String[] MONTH = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,24 +55,13 @@ public class EditCardActivity extends AppCompatActivity {
 
         setupActionBar();
         setupCardNumber();
-
-        expiredOn = findViewById(R.id.expire_date);
-        ccv = findViewById(R.id.ccv_code);
+        setupExpireDate();
+        setupCreditLine();
         stmtDate = findViewById(R.id.statement_date);
-        creditLine = findViewById(R.id.credit_line);
+
         cardFeature = findViewById(R.id.textedit_card_features);
-
-        TextView save = findViewById(R.id.actionbar_item_addcard_save);
-
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Creditcard card = CreateCreditCard();
-                CreditCardRepository creditCardRepository = new CreditCardRepository(getApplication());
-                creditCardRepository.InsertCard(card);
-                finish();
-            }
-        });
+        setupCVV();
+        setupSaveButton();
 
         TextView cancel = findViewById(R.id.actionbar_item_addcard_cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +76,140 @@ public class EditCardActivity extends AppCompatActivity {
         cardNickname = findViewById(R.id.card_alias);
         cardNickname.setText(cardTemplate.getProductName());
         cardFeature.setText(cardTemplate.getCardFeatures());
+    }
+
+    private void setupCreditLine()
+    {
+        creditLine = findViewById(R.id.credit_line);
+        creditLine.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                TextValidator.IsCreditLineValid(creditLine);
+            }
+        });
+    }
+
+    private void setupExpireDate()
+    {
+        expiredOn = findViewById(R.id.expire_date);
+        expiredOn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus) {
+                    setupCustomMonthYearPicker(v);
+                }
+            }
+        });
+    }
+
+    private void setupCustomMonthYearPicker(View v)
+    {
+        final Calendar c = Calendar.getInstance();
+        int y = c.get(Calendar.YEAR);
+
+        final Dialog dialog = new Dialog(v.getContext());
+        dialog.setContentView(R.layout.year_month_picker);
+
+        final NumberPicker monthPicker = dialog.findViewById(R.id.month_picker);
+        monthPicker.setMinValue(0);
+        monthPicker.setMaxValue(MONTH.length - 1 );
+        monthPicker.setDisplayedValues(MONTH);
+        monthPicker.setWrapSelectorWheel(false);
+        monthPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+
+        final NumberPicker yearPicker = dialog.findViewById(R.id.year_picker);
+        yearPicker.setMinValue(y);
+        yearPicker.setMaxValue(y + 12);
+        yearPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        yearPicker.setWrapSelectorWheel(false);
+
+        Button cancel = dialog.findViewById(R.id.month_year_picker_CancelBtn);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                expiredOn.clearFocus();
+            }
+        });
+
+        Button set = dialog.findViewById(R.id.month_year_picker_SetBtn);
+        set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expiredOn.setText(monthPicker.getValue() + 1 + "/" + yearPicker.getValue() % 100);
+                expiredOn.clearFocus();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+
+    private void setupCVV()
+    {
+        cvv = findViewById(R.id.ccv_code);
+
+        cvv.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                TextValidator.IsCVVValid(cvv);
+            }
+        });
+    }
+
+    private void setupSaveButton()
+    {
+        final TextView save = findViewById(R.id.actionbar_item_addcard_save);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Creditcard card = CreateCreditCard();
+
+                if(!CreditCardNoRuleBuilder.IsValidLength(card))
+                {
+                    cardNo.setError("Hey, check your card number again!");
+                    return;
+                }
+
+                if(!CreditCardNoRuleBuilder.IsValidStartNum(card))
+                {
+                    cardNo.setError("Hey, check your card number again!");
+                    return;
+                }
+
+                if(!CreditCardNoRuleBuilder.IsValidCardNoLuhnAlgo(card))
+                {
+                    cardNo.setError("Hey, check your card number again!");
+                    return;
+                }
+
+                CreditCardRepository creditCardRepository = new CreditCardRepository(getApplication());
+                creditCardRepository.InsertCard(card);
+                finish();
+            }
+        });
+
     }
 
     private void setupCardNumber()
@@ -90,13 +228,7 @@ public class EditCardActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(!TextValidator.IsCardNoValid(cardNo))
-                {
-
-                }
-
-                //cardNo.setText(addSpaceInCardNumber(cardNo.getText().toString()));
-
+                TextValidator.IsCardNoValid(cardNo);
             }
         });
     }
@@ -134,17 +266,17 @@ public class EditCardActivity extends AppCompatActivity {
     private Creditcard CreateCreditCard()
     {
         Creditcard card = new Creditcard();
-        card.setCardNickname(cardNickname.getText().toString());
+        card.setCardNickname(cardNickname.getText().toString().trim());
         card.setProductName(cardTemplate.getProductName());
         card.setCardImageRId(cardTemplate.getCardImageRId());
         card.setPaymentType(cardTemplate.getPaymentType());
         card.setPaymentTypeLogoRId(cardTemplate.getPaymentTypeLogoRId());
         card.setBankName(cardTemplate.getBankName());
-        card.setCardFeatures(cardFeature.getText().toString());
-        card.setCardNo(cardNo.getText().toString());
+        card.setCardFeatures(cardFeature.getText().toString().trim());
+        card.setCardNo(cardNo.getText().toString().trim());
         card.setStmtDate(stmtDate.getText().toString());
-        card.setCrediLine(creditLine.getText().toString());
-        card.setCcv(ccv.getText().toString());
+        card.setCrediLine(creditLine.getText().toString().trim());
+        card.setCvv(cvv.getText().toString().trim());
         card.setExpiredOn(expiredOn.getText().toString());
 
         return card;

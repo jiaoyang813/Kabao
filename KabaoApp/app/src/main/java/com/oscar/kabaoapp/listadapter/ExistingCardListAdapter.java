@@ -126,8 +126,8 @@ public class ExistingCardListAdapter extends BaseAdapter {
         TextView quickview_expiredate = view.findViewById( R.id.quickview_expiredate);
         quickview_expiredate.setText("Expire " + card.getExpiredOn());
 
-        TextView quickview_ccv = view.findViewById(R.id.quickview_ccv);
-        quickview_ccv.setText("ccv " + card.getCcv());
+        TextView quickview_cvv = view.findViewById(R.id.quickview_cvv);
+        quickview_cvv.setText(card.getCvv());
 
         cardbackview.setVisibility(View.GONE);
 

@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.oscar.kabaoapp.Common.ImageUtility;
-import com.oscar.kabaoapp.DAO.CreditCardDao_Impl;
 import com.oscar.kabaoapp.dataObject.Creditcard;
 
 import java.util.ArrayList;

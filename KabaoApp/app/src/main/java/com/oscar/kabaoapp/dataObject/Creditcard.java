@@ -27,7 +27,7 @@ public class Creditcard implements Parcelable {
     private String cardNo;
     private String stmtDate;
     private String crediLine;
-    private String ccv;
+    private String cvv;
     private String expiredOn;
 
     public Creditcard()
@@ -46,7 +46,7 @@ public class Creditcard implements Parcelable {
         cardNo = in.readString();
         stmtDate = in.readString();
         crediLine = in.readString();
-        ccv = in.readString();
+        cvv = in.readString();
         expiredOn = in.readString();
     }
 
@@ -142,13 +142,10 @@ public class Creditcard implements Parcelable {
         this.crediLine = crediLine;
     }
 
-    public String getCcv() {
-        return ccv;
-    }
+    public String getCvv() { return cvv; }
 
-    public void setCcv(String ccv) {
-        this.ccv = ccv;
-    }
+    public void setCvv(String cvv) {  this.cvv = cvv; }
+
 
     public String getExpiredOn() {
         return expiredOn;
@@ -183,7 +180,7 @@ public class Creditcard implements Parcelable {
         dest.writeString(cardNo);
         dest.writeString(stmtDate);
         dest.writeString(crediLine);
-        dest.writeString(ccv);
+        dest.writeString(cvv);
         dest.writeString(expiredOn);
     }
 

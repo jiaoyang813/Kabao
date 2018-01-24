@@ -22,7 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.oscar.kabaoapp.DAO.CreditCardDao_Impl;
 import com.oscar.kabaoapp.Database.AppDatabase;
 import com.oscar.kabaoapp.Database.KabaoDatabase;
 import com.oscar.kabaoapp.OnClickListener.AddNewCardOnClickListener;
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
        card.setPaymentTypeLogoRId(R.drawable.new_visa_big);
        card.setPaymentType(PaymentType.Visa);
        card.setExpiredOn("02/22");
-       card.setCcv("123");
+       card.setCvv("123");
        card.setCrediLine("400");
        card.setCardImageRId(R.drawable.ic_placeholder);
        card.setStmtDate("12");

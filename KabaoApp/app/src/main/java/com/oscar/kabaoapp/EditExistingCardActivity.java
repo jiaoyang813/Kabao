@@ -24,7 +24,7 @@ public class EditExistingCardActivity extends AppCompatActivity {
     private EditText cardNickname;
     private EditText cardNo;
     private EditText expiredOn;
-    private EditText ccv;
+    private EditText cvv;
     private EditText stmtDate;
     private EditText creditLine;
     private TextView cardFeature;
@@ -42,7 +42,7 @@ public class EditExistingCardActivity extends AppCompatActivity {
         cardNickname = findViewById(R.id.card_alias);
         cardNo = findViewById(R.id.card_number);
         expiredOn = findViewById(R.id.expire_date);
-        ccv = findViewById(R.id.ccv_code);
+        cvv = findViewById(R.id.ccv_code);
         stmtDate = findViewById(R.id.statement_date);
         creditLine = findViewById(R.id.credit_line);
         cardFeature = findViewById(R.id.textedit_card_features);
@@ -64,7 +64,7 @@ public class EditExistingCardActivity extends AppCompatActivity {
 
         cardNo.setText(card.getCardNo());
         expiredOn.setText(card.getExpiredOn());
-        ccv.setText(card.getCcv());
+        cvv.setText(card.getCvv());
         stmtDate.setText(card.getStmtDate());
         creditLine.setText(card.getCrediLine());
         cardFeature.setText(card.getCardFeatures());
@@ -130,7 +130,7 @@ public class EditExistingCardActivity extends AppCompatActivity {
         card.setCardNo(cardNo.getText().toString());
         card.setStmtDate(stmtDate.getText().toString());
         card.setCrediLine(creditLine.getText().toString());
-        card.setCcv(ccv.getText().toString());
+        card.setCvv(cvv.getText().toString());
         card.setExpiredOn(expiredOn.getText().toString());
     }
 }

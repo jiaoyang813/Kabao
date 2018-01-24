@@ -38,7 +38,7 @@ public class CreditCardStaticDataProvider {
     private static CreditCardTemplate GetChaseFreedomTemplate()
     {
         CreditCardTemplate cardTemplate = new CreditCardTemplate();
-        cardTemplate.setId(CardID++);
+        //cardTemplate.setId(CardID++);
         cardTemplate.setBankName(BankName.Chase);
         cardTemplate.setProductName("Chase Freedom");
         cardTemplate.setPaymentType(PaymentType.Visa);
@@ -52,7 +52,7 @@ public class CreditCardStaticDataProvider {
     private static CreditCardTemplate GetChaseSapphirePreferredTemplate()
     {
         CreditCardTemplate cardTemplate = new CreditCardTemplate();
-        cardTemplate.setId(CardID++);
+        //cardTemplate.setId(CardID++);
         cardTemplate.setBankName(BankName.Chase);
         cardTemplate.setProductName("Chase Sapphire Preferred");
         cardTemplate.setPaymentType(PaymentType.Visa);
@@ -67,7 +67,7 @@ public class CreditCardStaticDataProvider {
     private static CreditCardTemplate GetCitiDoubleCashTemplate()
     {
         CreditCardTemplate cardTemplate = new CreditCardTemplate();
-        cardTemplate.setId(CardID++);
+        //cardTemplate.setId(CardID++);
         cardTemplate.setBankName(BankName.CITI);
         cardTemplate.setProductName("CITI Double Cash");
         cardTemplate.setPaymentType(PaymentType.MasterCard);
@@ -81,7 +81,7 @@ public class CreditCardStaticDataProvider {
     private static CreditCardTemplate GetAmexBlueCashEverydayTemplate()
     {
         CreditCardTemplate cardTemplate = new CreditCardTemplate();
-        cardTemplate.setId(CardID++);
+        //cardTemplate.setId(CardID++);
         cardTemplate.setBankName(BankName.AmericanExpress);
         cardTemplate.setProductName("Amex Blue Cash Everyday");
         cardTemplate.setPaymentType(PaymentType.AmericanExpress);

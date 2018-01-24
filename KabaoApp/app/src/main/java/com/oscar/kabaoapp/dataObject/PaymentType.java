@@ -8,5 +8,13 @@ public enum PaymentType {
     Visa,
     MasterCard,
     AmericanExpress,
-    Discover
+    Discover,
+    DinersClubCarteBlanche,
+    DinersClubInternational,
+    DinersClubUSACA,
+    InstaPayment,
+    JCP,
+    Maestro,
+    VisaElectron,
+    UnionPay
 }

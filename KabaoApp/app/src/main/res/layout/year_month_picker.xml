@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <TextView
+        android:id="@+id/month_year_picker_title"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:text="Set Expiration Date"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="1dp"
+        android:background="@color/iron"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="Month"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:gravity="center"/>
+            <NumberPicker
+                android:id="@+id/month_picker"
+                android:layout_width="50dp"
+                android:layout_height="100dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:textSize="12sp"
+                android:text="Year"
+                android:textColor="@color/black"
+                android:gravity="center"/>
+            <NumberPicker
+                android:id="@+id/year_picker"
+                android:layout_width="50dp"
+                android:layout_height="100dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <View android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/iron"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="100dp"
+            android:textSize="12sp"
+            android:layout_height="40dp"
+            android:text="Cancel"
+            android:textColor="@color/red_color"
+            android:background="@color/white"
+            android:id="@+id/month_year_picker_CancelBtn"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/iron"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:textSize="12sp"
+            android:textColor="@color/blue_color"
+            android:textStyle="bold"
+            android:text="Set"
+            android:background="@color/white"
+            android:id="@+id/month_year_picker_SetBtn"/>
+    </LinearLayout>
+
+
+</LinearLayout>
