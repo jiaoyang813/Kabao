@@ -11,6 +11,43 @@ import android.widget.TextView;
 public class TextValidator {
     private static final int CARD_NUMBER_LENGTH = 19;
 
+    public static boolean IsStmtDateValid(EditText editText)
+    {
+        String stmtDate = editText.getText().toString();
+        if(stmtDate.isEmpty())
+            return true;
+
+        if(!isLastInputDigit(stmtDate, editText))
+        {
+            return false;
+        }
+
+        int dayOfMonth = Integer.valueOf(stmtDate);
+
+        if(dayOfMonth> 31 || dayOfMonth < 1)
+        {
+            editText.setError("Please give a proper day of a month!");
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean IsCardNicknameValid(EditText editText)
+    {
+        String name = editText.getText().toString();
+
+        if(name.isEmpty())
+            return true;
+
+        if(name.length() > 30) {
+            removeInvalidChar(name, editText);
+            editText.setError("Reached maximum allowed letters!");
+            return false;
+        }
+        return true;
+    }
+
     public static boolean IsCreditLineValid(EditText editText)
     {
         String creditLine = editText.getText().toString().trim();
@@ -24,37 +61,29 @@ public class TextValidator {
             editText.setError("Reached maximum allowed digits!");
         }
 
-        Character lastChar = creditLine.charAt(creditLine.length() - 1);
-
-        if(!Character.isDigit(lastChar))
+        if(!isLastInputDigit(creditLine, editText))
         {
-            removeInvalidChar(creditLine, editText);
-            editText.setError("Please enter numbers(0-9) only");
             return false;
         }
 
         return true;
     }
 
-    public static boolean IsCVVValid(EditText textView)
+    public static boolean IsCVVValid(EditText editText)
     {
-        String cvv = textView.getText().toString().trim();
+        String cvv = editText.getText().toString().trim();
 
         if(cvv.isEmpty())
             return true;
 
         if(cvv.length() > 4)
         {
-            removeInvalidChar(cvv, textView);
-            textView.setError("Reached maximum allowed digits!");
+            removeInvalidChar(cvv, editText);
+            editText.setError("Reached maximum allowed digits!");
         }
 
-        Character lastChar = cvv.charAt(cvv.length() - 1);
-
-        if(!Character.isDigit(lastChar))
+        if(!isLastInputDigit(cvv, editText))
         {
-            removeInvalidChar(cvv, textView);
-            textView.setError("Please enter numbers(0-9) only");
             return false;
         }
 
@@ -78,11 +107,21 @@ public class TextValidator {
             return false;
         }
 
-        Character lastChar = cardNumberNoSpace.charAt(cardNumberDigits -1);
+        if(!isLastInputDigit(cardNumberNoSpace, editText))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private static boolean isLastInputDigit(String input, EditText editText)
+    {
+        Character lastChar = input.charAt(input.length() - 1);
 
         if(!Character.isDigit(lastChar))
         {
-            removeInvalidChar(cardNo, editText);
+            removeInvalidChar(input, editText);
             editText.setError("Please enter numbers(0-9) only");
             return false;
         }

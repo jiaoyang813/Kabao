@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.oscar.kabaoapp.Common.ImageUtility;
+import com.oscar.kabaoapp.Common.StmtDateHelper;
 import com.oscar.kabaoapp.MainActivity;
 import com.oscar.kabaoapp.OnClickListener.CardDetailViewOnClickListener;
 import com.oscar.kabaoapp.OnClickListener.DeleteCardOnClickListener;
@@ -85,15 +86,9 @@ public class ExistingCardListAdapter extends BaseAdapter {
         cardName.setText(card.getProductName() + "(..." +last4DigitsCardNo+")");
 
         TextView stmtDate = view.findViewById(R.id.card_stmt_dt);
-        Date today = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(today);
-        int month = cal.get(Calendar.MONTH) + 1;
+        int stmtDayOfMonth = Integer.valueOf(card.getStmtDate());
+        stmtDate.setText("Statement Date: " + StmtDateHelper.GetStmtDate(stmtDayOfMonth));
 
-        String monthStr = month < 10 ? "0"+month : Integer.toString(month);
-
-        //TODO change date according to statment date
-        stmtDate.setText("Statement Date (dd/mm): " +  card.getStmtDate() + "/" + monthStr);
 
         ImageView detailIcon = view.findViewById(R.id.show_detail);
         detailIcon.setOnClickListener(new CardDetailViewOnClickListener(card.getId()));

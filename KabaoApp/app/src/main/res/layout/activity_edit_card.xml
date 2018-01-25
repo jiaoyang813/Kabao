@@ -126,7 +126,7 @@
                             android:layout_width="140dp"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
-                            android:hint="Statement Date" />
+                            android:hint="Statement Day of Month" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -155,7 +155,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
                 android:textSize="12sp"
-                android:text="Benefits"/>
+                android:text="Notes"/>
 
             <View
                 android:layout_width="match_parent"

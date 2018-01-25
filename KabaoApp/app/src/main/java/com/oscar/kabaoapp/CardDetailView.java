@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.oscar.kabaoapp.Common.ImageUtility;
+import com.oscar.kabaoapp.Common.StmtDateHelper;
 import com.oscar.kabaoapp.OnClickListener.AddNewCardOnClickListener;
 import com.oscar.kabaoapp.Repositories.CreditCardRepository;
 import com.oscar.kabaoapp.ViewModel.AddedCreditCardViewModel;
@@ -26,6 +27,7 @@ import com.oscar.kabaoapp.dataObject.Creditcard;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class CardDetailView extends AppCompatActivity {
@@ -81,7 +83,8 @@ public class CardDetailView extends AppCompatActivity {
         bank.setText(card.getBankName().toString());
 
         TextView stmtdate = findViewById(R.id.carddetailview_stmtdate);
-        stmtdate.setText(card.getStmtDate());
+        int stmtDayOfMonth = Integer.valueOf(card.getStmtDate());
+        stmtdate.setText(StmtDateHelper.GetStmtDate(stmtDayOfMonth));
 
         TextView creditline = findViewById(R.id.carddetailview_creditline);
         creditline.setText(card.getCrediLine());

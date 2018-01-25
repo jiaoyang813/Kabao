@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.oscar.kabaoapp.Common.Constants;
 import com.oscar.kabaoapp.Common.CreditCardNoRule;
 import com.oscar.kabaoapp.Common.CreditCardNoRuleBuilder;
 import com.oscar.kabaoapp.Common.TextValidator;
@@ -47,35 +48,55 @@ public class EditCardActivity extends AppCompatActivity {
     private TextView cardFeature;
 
     private CreditCardTemplate cardTemplate;
-    private final String[] MONTH = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_card);
 
+        Intent intent = getIntent();
+        cardTemplate = intent.getParcelableExtra(AddCardActivity.CardTemplate);
+
         setupActionBar();
         setupCardNumber();
         setupExpireDate();
         setupCreditLine();
-        stmtDate = findViewById(R.id.statement_date);
-
-        cardFeature = findViewById(R.id.textedit_card_features);
+        setupCardNickname();
+        setupStmtDate();
         setupCVV();
         setupSaveButton();
+        setupCancelButton();
+        setupCardNotes();
+    }
 
-        TextView cancel = findViewById(R.id.actionbar_item_addcard_cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
+    private void setupCardNotes()
+    {
+        cardFeature = findViewById(R.id.textedit_card_features);
+        cardFeature.setText(cardTemplate.getCardFeatures());
+    }
+
+    private void setupCardNickname()
+    {
+        cardNickname = findViewById(R.id.card_alias);
+        cardNickname.setText(cardTemplate.getProductName());
+
+        cardNickname.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                finish();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                TextValidator.IsCardNicknameValid(cardNickname);
             }
         });
 
-        Intent intent = getIntent();
-        cardTemplate = intent.getParcelableExtra(AddCardActivity.CardTemplate);
-        cardNickname = findViewById(R.id.card_alias);
-        cardNickname.setText(cardTemplate.getProductName());
-        cardFeature.setText(cardTemplate.getCardFeatures());
     }
 
     private void setupCreditLine()
@@ -118,11 +139,12 @@ public class EditCardActivity extends AppCompatActivity {
 
         final Dialog dialog = new Dialog(v.getContext());
         dialog.setContentView(R.layout.year_month_picker);
+        dialog.setCanceledOnTouchOutside(false);
 
         final NumberPicker monthPicker = dialog.findViewById(R.id.month_picker);
         monthPicker.setMinValue(0);
-        monthPicker.setMaxValue(MONTH.length - 1 );
-        monthPicker.setDisplayedValues(MONTH);
+        monthPicker.setMaxValue(Constants.MONTH.length - 1 );
+        monthPicker.setDisplayedValues(Constants.MONTH);
         monthPicker.setWrapSelectorWheel(false);
         monthPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
 
@@ -155,6 +177,54 @@ public class EditCardActivity extends AppCompatActivity {
     }
 
 
+    private void setupStmtDate()
+    {
+        stmtDate = findViewById(R.id.statement_date);
+        stmtDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus)
+                {
+                    setupCustomDayOfMonthPicker(v);
+                }
+            }
+        });
+    }
+
+
+    private void setupCustomDayOfMonthPicker(View v)
+    {
+        final Dialog dialog = new Dialog(v.getContext());
+        dialog.setContentView(R.layout.dayofmonth_picker);
+        dialog.setCanceledOnTouchOutside(false);
+
+        final NumberPicker dayofmonthPicker = dialog.findViewById(R.id.dayofmonth_picker);
+        dayofmonthPicker.setMinValue(1);
+        dayofmonthPicker.setMaxValue(31);
+        dayofmonthPicker.setWrapSelectorWheel(false);
+        dayofmonthPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        Button cancel = dialog.findViewById(R.id.dayofmonth_picker_CancelBtn);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                stmtDate.clearFocus();
+            }
+        });
+
+        Button set = dialog.findViewById(R.id.dayofmonth_picker_SetBtn);
+        set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stmtDate.setText(String.valueOf(dayofmonthPicker.getValue()));
+                stmtDate.clearFocus();
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
     private void setupCVV()
     {
         cvv = findViewById(R.id.ccv_code);
@@ -175,6 +245,18 @@ public class EditCardActivity extends AppCompatActivity {
                 TextValidator.IsCVVValid(cvv);
             }
         });
+    }
+
+    private void setupCancelButton()
+    {
+        TextView cancel = findViewById(R.id.actionbar_item_addcard_cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     private void setupSaveButton()

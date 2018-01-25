@@ -12,7 +12,7 @@
         android:gravity="center"
         android:layout_margin="10dp"
         android:textColor="@color/black"
-        android:text="Set Expiration Date"/>
+        android:text="Set Statement Date"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -21,44 +21,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
         android:gravity="center">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:text="Month"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:gravity="center"/>
-            <NumberPicker
-                android:id="@+id/month_picker"
-                android:layout_width="50dp"
-                android:layout_height="100dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:textSize="12sp"
-                android:text="Year"
-                android:textColor="@color/black"
-                android:gravity="center"/>
-            <NumberPicker
-                android:id="@+id/year_picker"
-                android:layout_width="50dp"
-                android:layout_height="100dp" />
-        </LinearLayout>
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="Day of Month"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:gravity="center"/>
+        <NumberPicker
+            android:id="@+id/dayofmonth_picker"
+            android:layout_width="60dp"
+            android:layout_height="100dp" />
     </LinearLayout>
     <View android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -74,7 +50,7 @@
             android:text="Cancel"
             android:textColor="@color/red_color"
             android:background="@color/white"
-            android:id="@+id/month_year_picker_CancelBtn"/>
+            android:id="@+id/dayofmonth_picker_CancelBtn"/>
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
@@ -87,7 +63,7 @@
             android:textStyle="bold"
             android:text="Set"
             android:background="@color/white"
-            android:id="@+id/month_year_picker_SetBtn"/>
+            android:id="@+id/dayofmonth_picker_SetBtn"/>
     </LinearLayout>
 
 
