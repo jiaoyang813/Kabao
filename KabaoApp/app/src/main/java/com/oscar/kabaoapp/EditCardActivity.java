@@ -266,7 +266,7 @@ public class EditCardActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Creditcard card = CreateCreditCard();
+                Creditcard card = CreateCreditCard(v);
 
                 if(!CreditCardNoRuleBuilder.IsValidLength(card))
                 {
@@ -274,24 +274,23 @@ public class EditCardActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(!CreditCardNoRuleBuilder.IsValidStartNum(card))
+                /*if(!CreditCardNoRuleBuilder.IsValidStartNum(card))
                 {
                     cardNo.setError("Hey, check your card number again!");
                     return;
-                }
+                }*/
 
-                if(!CreditCardNoRuleBuilder.IsValidCardNoLuhnAlgo(card))
+               /* if(!CreditCardNoRuleBuilder.IsValidCardNoLuhnAlgo(card))
                 {
                     cardNo.setError("Hey, check your card number again!");
                     return;
-                }
+                }*/
 
                 CreditCardRepository creditCardRepository = new CreditCardRepository(getApplication());
                 creditCardRepository.InsertCard(card);
                 finish();
             }
         });
-
     }
 
     private void setupCardNumber()
@@ -345,19 +344,19 @@ public class EditCardActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(customNav, lp1);
     }
 
-    private Creditcard CreateCreditCard()
+    private Creditcard CreateCreditCard(View v)
     {
         Creditcard card = new Creditcard();
         card.setCardNickname(cardNickname.getText().toString().trim());
         card.setProductName(cardTemplate.getProductName());
-        card.setCardImageRId(cardTemplate.getCardImageRId());
-        card.setPaymentType(cardTemplate.getPaymentType());
-        card.setPaymentTypeLogoRId(cardTemplate.getPaymentTypeLogoRId());
+        card.setCardImageRId(cardTemplate.getCardImageRId(v), v);
+        card.setCardIssuer(cardTemplate.getCardIssuer());
+        card.setCardIssuerLogoRId(cardTemplate.getCardIssuerLogoRId(v), v);
         card.setBankName(cardTemplate.getBankName());
         card.setCardFeatures(cardFeature.getText().toString().trim());
         card.setCardNo(cardNo.getText().toString().trim());
         card.setStmtDate(stmtDate.getText().toString());
-        card.setCrediLine(creditLine.getText().toString().trim());
+        card.setCreditLine(creditLine.getText().toString().trim());
         card.setCvv(cvv.getText().toString().trim());
         card.setExpiredOn(expiredOn.getText().toString());
 

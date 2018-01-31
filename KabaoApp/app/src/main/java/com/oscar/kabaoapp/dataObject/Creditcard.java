@@ -7,6 +7,9 @@ import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.view.View;
+
+import com.oscar.kabaoapp.Common.ResourceHelper;
 
 /**
  * Created by oscar on 12/10/17.
@@ -14,19 +17,14 @@ import android.os.Parcelable;
 
 @Entity(tableName = "usercreditcards")
 @TypeConverters({BankNameTypeConverter.class, PaymentTypeConverter.class})
-public class Creditcard implements Parcelable {
+public class Creditcard extends CreditCardTemplate implements Parcelable {
+
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String cardNickname;
-    private String productName;
-    private int cardImageRId;
-    private PaymentType paymentType;
-    private int paymentTypeLogoRId;
-    private BankName bankName;
-    private String cardFeatures;
     private String cardNo;
     private String stmtDate;
-    private String crediLine;
+    private String creditLine;
     private String cvv;
     private String expiredOn;
 
@@ -35,17 +33,12 @@ public class Creditcard implements Parcelable {
     }
 
     protected Creditcard(Parcel in) {
-        id = in.readInt();
+        super(in);
+        id= in.readInt();
         cardNickname = in.readString();
-        productName = in.readString();
-        cardImageRId = in.readInt();
-        paymentType = PaymentType.valueOf(in.readString());
-        paymentTypeLogoRId = in.readInt();
-        bankName = BankName.valueOf(in.readString());
-        cardFeatures = in.readString();
         cardNo = in.readString();
         stmtDate = in.readString();
-        crediLine = in.readString();
+        creditLine = in.readString();
         cvv = in.readString();
         expiredOn = in.readString();
     }
@@ -86,60 +79,13 @@ public class Creditcard implements Parcelable {
     public void setCardNo(String cardNo) {
         this.cardNo = cardNo;
     }
-    public String getProductName() {
-        return productName;
+
+    public String getCreditLine() {
+        return creditLine;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public int getCardImageRId() {
-        return cardImageRId;
-    }
-
-    public void setCardImageRId(int cardImageRId) {
-        this.cardImageRId = cardImageRId;
-    }
-
-    public int getPaymentTypeLogoRId() {
-        return paymentTypeLogoRId;
-    }
-
-    public void setPaymentTypeLogoRId(int paymentTypeLogoRId) {
-        this.paymentTypeLogoRId = paymentTypeLogoRId;
-    }
-
-    public PaymentType getPaymentType() {
-        return paymentType;
-    }
-
-    public void setPaymentType(PaymentType paymentType) {
-        this.paymentType = paymentType;
-    }
-
-    public BankName getBankName() {
-        return bankName;
-    }
-
-    public void setBankName(BankName bankName) {
-        this.bankName = bankName;
-    }
-
-    public String getCardFeatures() {
-        return cardFeatures;
-    }
-
-    public void setCardFeatures(String cardFeatures) {
-        this.cardFeatures = cardFeatures;
-    }
-
-    public String getCrediLine() {
-        return crediLine;
-    }
-
-    public void setCrediLine(String crediLine) {
-        this.crediLine = crediLine;
+    public void setCreditLine(String crediLine) {
+        this.creditLine = crediLine;
     }
 
     public String getCvv() { return cvv; }
@@ -154,6 +100,7 @@ public class Creditcard implements Parcelable {
     public void setExpiredOn(String expiredOn) {
         this.expiredOn = expiredOn;
     }
+
     public String getStmtDate() {
         return stmtDate;
     }
@@ -169,17 +116,12 @@ public class Creditcard implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest,flags);
         dest.writeInt(id);
         dest.writeString(cardNickname);
-        dest.writeString(productName);
-        dest.writeInt(cardImageRId);
-        dest.writeString(paymentType.toString());
-        dest.writeInt(paymentTypeLogoRId);
-        dest.writeString(bankName.toString());
-        dest.writeString(cardFeatures);
         dest.writeString(cardNo);
         dest.writeString(stmtDate);
-        dest.writeString(crediLine);
+        dest.writeString(creditLine);
         dest.writeString(cvv);
         dest.writeString(expiredOn);
     }

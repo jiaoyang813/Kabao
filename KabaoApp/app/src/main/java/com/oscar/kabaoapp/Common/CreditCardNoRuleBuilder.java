@@ -62,7 +62,7 @@ public class CreditCardNoRuleBuilder {
 
     public static boolean IsValidStartNum(Creditcard card)
     {
-        CreditCardNoRule cardNumRule = CardNoRules.get(card.getPaymentType());
+        CreditCardNoRule cardNumRule = CardNoRules.get(card.getCardIssuer());
         Boolean matchedStartnum = false;
 
         for (Integer startNum: cardNumRule.StartWith) {
@@ -87,7 +87,7 @@ public class CreditCardNoRuleBuilder {
 
     public static  boolean IsValidLength(Creditcard card)
     {
-        CreditCardNoRule cardNumRule = CardNoRules.get(card.getPaymentType());
+        CreditCardNoRule cardNumRule = CardNoRules.get(card.getCardIssuer());
 
         if(!cardNumRule.NumOfDigits.contains(card.getCardNo().length()))
         {

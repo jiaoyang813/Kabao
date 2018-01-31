@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.oscar.kabaoapp.Common.DataFormatter;
 import com.oscar.kabaoapp.Common.ImageUtility;
 import com.oscar.kabaoapp.Common.StmtDateHelper;
 import com.oscar.kabaoapp.MainActivity;
@@ -99,8 +100,8 @@ public class ExistingCardListAdapter extends BaseAdapter {
     private void setupCardQuickView(View view, Creditcard card)
     {
         final ImageView cardImage = view.findViewById(R.id.card_image);
-        cardImage.setBackgroundResource(card.getCardImageRId());
-        int[] heightAndwidthAjusted = ImageUtility.scaleImage(128, 200, card.getCardImageRId(), cardImage, view);
+        cardImage.setBackgroundResource(card.getCardImageRId(view));
+        int[] heightAndwidthAjusted = ImageUtility.scaleImage(128, 200, card.getCardImageRId(view), cardImage, view);
 
         final RelativeLayout cardbackview = view.findViewById(R.id.cardquickview);
         ViewGroup.LayoutParams params = cardbackview.getLayoutParams();
@@ -110,13 +111,12 @@ public class ExistingCardListAdapter extends BaseAdapter {
         cardbackview.setLayoutParams(params);
 
         ImageView quickview_paymenttypeimage = view.findViewById(R.id.quickview_paymenttypeimage);
-        quickview_paymenttypeimage.setBackgroundResource(card.getPaymentTypeLogoRId());
-
+        quickview_paymenttypeimage.setBackgroundResource(card.getCardIssuerLogoRId(view));
         ImageUtility.scaleImage(40, 40,
-                card.getPaymentTypeLogoRId(), quickview_paymenttypeimage, view);
+                card.getCardIssuerLogoRId(view), quickview_paymenttypeimage, view);
 
         TextView quickview_cardnumber = view.findViewById(R.id.quickview_cardnumber);
-        quickview_cardnumber.setText(card.getCardNo());
+        quickview_cardnumber.setText(DataFormatter.addSpaceInCardNumber(card.getCardNo()));
 
         TextView quickview_expiredate = view.findViewById( R.id.quickview_expiredate);
         quickview_expiredate.setText("Expire " + card.getExpiredOn());

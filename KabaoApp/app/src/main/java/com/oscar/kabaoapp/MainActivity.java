@@ -22,6 +22,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.oscar.kabaoapp.Database.AppDatabase;
 import com.oscar.kabaoapp.Database.KabaoDatabase;
 import com.oscar.kabaoapp.OnClickListener.AddNewCardOnClickListener;
@@ -38,13 +41,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final int AddCardCode = 10000;
     AddedCreditCardViewModel addedCreditCardViewModel;
-
+    private final String AppID = "ca-app-pub-9690495249654800~4847942125";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setupAds();
         setupActionBar();
         //setupNavigationView();
 
@@ -60,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void setupAds()
+    {
+        MobileAds.initialize(this, AppID);
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+    }
+
     private void setupActionBar()
     {
         Toolbar myToolbar = findViewById(R.id.action_bar_main);
@@ -72,45 +84,12 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(customNav, lp1);
 
-
         // action bar menu option click listener
         TextView addCard = findViewById(R.id.actionbar_main_add);
         addCard.setOnClickListener(new AddNewCardOnClickListener());
 
     }
 
-   private class KabaoDBTestTask extends AsyncTask<KabaoDatabase, Void, Void>{
-       @Override
-       protected Void doInBackground(KabaoDatabase... kabaoDatabases) {
-           testKabaoDB(kabaoDatabases[0]);
-           return null;
-       }
-   }
-
-   private static void testKabaoDB(KabaoDatabase db)
-   {
-       Creditcard card = new Creditcard();
-       card.setPaymentTypeLogoRId(R.drawable.new_visa_big);
-       card.setPaymentType(PaymentType.Visa);
-       card.setExpiredOn("02/22");
-       card.setCvv("123");
-       card.setCrediLine("400");
-       card.setCardImageRId(R.drawable.ic_placeholder);
-       card.setStmtDate("12");
-       card.setCardNo("111111111111111111");
-       card.setBankName(BankName.Chase);
-       card.setProductName("Chase Freedom");
-
-       db.creditCardDao().insertCard(card);
-       Creditcard[] cards = db.creditCardDao().loadAllCard();
-
-       cards[0].setCardNo("22222222222222222");
-       db.creditCardDao().updateCard(cards[0]);
-       cards = db.creditCardDao().loadAllCard();
-
-       db.creditCardDao().deleteCard(cards[0]);
-       cards = db.creditCardDao().loadAllCard();
-   }
 
    /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -206,6 +185,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }

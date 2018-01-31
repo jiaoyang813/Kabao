@@ -38,8 +38,8 @@ public class AddCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
         //loadFakeData();
-        loadStaticData();
         productListView = findViewById(R.id.available_card_listview);
+        loadStaticData(productListView);
         cardListAdapter = new AddCardListAdapter(AddCardActivity.this, creditCardCompanies);
         productListView.setAdapter(cardListAdapter);
 
@@ -108,8 +108,8 @@ public class AddCardActivity extends AppCompatActivity {
         creditCardCompanies = dataProvider.getAllCompanies();
     }*/
 
-    private void loadStaticData()
+    private void loadStaticData(View view)
     {
-        creditCardCompanies = CompanyStaticDataProvider.AllCompanies;
+        creditCardCompanies = CompanyStaticDataProvider.GetAllCompanies(view);
     }
 }

@@ -78,7 +78,7 @@ public class EditExistingCardActivity extends AppCompatActivity {
         expiredOn.setText(card.getExpiredOn());
         cvv.setText(card.getCvv());
         stmtDate.setText(card.getStmtDate());
-        creditLine.setText(card.getCrediLine());
+        creditLine.setText(card.getCreditLine());
         cardFeature.setText(card.getCardFeatures());
     }
 
@@ -114,7 +114,7 @@ public class EditExistingCardActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateCreditCard();
+                updateCreditCard(v);
                 CreditCardRepository creditCardRepository = new CreditCardRepository(getApplication());
                 creditCardRepository.UpdateCard(card);
                 finish();
@@ -244,7 +244,7 @@ public class EditExistingCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                updateCreditCard();
+                updateCreditCard(v);
 
                 if(!CreditCardNoRuleBuilder.IsValidLength(card))
                 {
@@ -252,17 +252,17 @@ public class EditExistingCardActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(!CreditCardNoRuleBuilder.IsValidStartNum(card))
+                /*if(!CreditCardNoRuleBuilder.IsValidStartNum(card))
                 {
                     cardNo.setError("Hey, check your card number again!");
                     return;
-                }
+                }*/
 
-                if(!CreditCardNoRuleBuilder.IsValidCardNoLuhnAlgo(card))
+                /* if(!CreditCardNoRuleBuilder.IsValidCardNoLuhnAlgo(card))
                 {
                     cardNo.setError("Hey, check your card number again!");
                     return;
-                }
+                }*/
 
                 CreditCardRepository creditCardRepository = new CreditCardRepository(getApplication());
                 creditCardRepository.UpdateCard(card);
@@ -377,18 +377,18 @@ public class EditExistingCardActivity extends AppCompatActivity {
         });
     }
 
-    private void updateCreditCard()
+    private void updateCreditCard(View v)
     {
         card.setCardNickname(cardNickname.getText().toString());
         card.setProductName(card.getProductName());
-        card.setCardImageRId(card.getCardImageRId());
-        card.setPaymentType(card.getPaymentType());
-        card.setPaymentTypeLogoRId(card.getPaymentTypeLogoRId());
+        card.setCardImageRId(card.getCardImageRId(v), v);
+        card.setCardIssuer(card.getCardIssuer());
+        card.setCardIssuerLogoRId(card.getCardIssuerLogoRId(v),v);
         card.setBankName(card.getBankName());
         card.setCardFeatures(cardFeature.getText().toString());
         card.setCardNo(cardNo.getText().toString());
         card.setStmtDate(stmtDate.getText().toString());
-        card.setCrediLine(creditLine.getText().toString());
+        card.setCreditLine(creditLine.getText().toString());
         card.setCvv(cvv.getText().toString());
         card.setExpiredOn(expiredOn.getText().toString());
     }

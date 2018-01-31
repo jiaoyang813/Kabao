@@ -11,19 +11,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
-
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".AddCardActivity" />
-        <activity android:name=".EditCardActivity" />
-        <activity android:name=".CardDetailView" />
-        <activity android:name=".EditExistingCardActivity"></activity>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SignupActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AddCardActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".EditCardActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CardDetailView"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".EditExistingCardActivity"
+            android:screenOrientation="portrait"/>
     </application>
-
+   <!-- App ID: ca-app-pub-9690495249654800~4847942125-->
 </manifest>

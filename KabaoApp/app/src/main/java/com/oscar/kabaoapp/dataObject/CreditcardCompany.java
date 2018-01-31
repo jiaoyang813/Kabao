@@ -9,13 +9,13 @@ import java.util.ArrayList;
 public class CreditcardCompany {
 
     private ArrayList<CreditCardTemplate> creditcardProducts;
-    private int companyId;
-    private int companyLogoRId;
+
+
+    private String companyLogoName;
     private BankName companyName;
 
-    public CreditcardCompany(int companyId, BankName companyName)
+    public CreditcardCompany(BankName companyName)
     {
-        this.companyId = companyId;
         this.companyName = companyName;
         creditcardProducts = new ArrayList<>();
     }
@@ -25,23 +25,23 @@ public class CreditcardCompany {
         return creditcardProducts;
     }
 
-    public int GetCompanyId()
-    {
-        return companyId;
+
+    public String getCompanyLogoName() {
+        return companyLogoName;
     }
 
-    public BankName GetCompanyName()
-    {
+    public void setCompanyLogoName(String companyLogoName) {
+        this.companyLogoName = companyLogoName;
+    }
+
+    public BankName getCompanyName() {
         return companyName;
     }
 
-    public int getCompanyLogoRId() {
-        return companyLogoRId;
+    public void setCompanyName(BankName companyName) {
+        this.companyName = companyName;
     }
 
-    public void setCompanyLogoRId(int companyLogoRId) {
-        this.companyLogoRId = companyLogoRId;
-    }
 
     public void AddProduct(CreditCardTemplate creditcard)
     {

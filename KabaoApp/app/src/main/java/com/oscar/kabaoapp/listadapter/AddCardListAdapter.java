@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.oscar.kabaoapp.Common.ImageUtility;
+import com.oscar.kabaoapp.Common.ResourceHelper;
 import com.oscar.kabaoapp.R;
 import com.oscar.kabaoapp.dataObject.CreditCardTemplate;
 import com.oscar.kabaoapp.dataObject.Creditcard;
@@ -77,13 +78,14 @@ public class AddCardListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView heading = view.findViewById(R.id.creditcardcompany_name);
-        heading.setText(creditcardCompany.GetCompanyName().toString());
+        heading.setText(creditcardCompany.getCompanyName().toString());
 
         ImageView bankImage = view.findViewById(R.id.expandablelist_group_image);
-        bankImage.setBackgroundResource(creditcardCompany.getCompanyLogoRId());
+        bankImage.setBackgroundResource(
+                ResourceHelper.GetResId(creditcardCompany.getCompanyLogoName(), view));
 
         ImageUtility.scaleImage(100, 60,
-                creditcardCompany.getCompanyLogoRId(), bankImage, view);
+                ResourceHelper.GetResId(creditcardCompany.getCompanyLogoName(), view), bankImage, view);
 
 
         return view;
@@ -101,9 +103,9 @@ public class AddCardListAdapter extends BaseExpandableListAdapter {
         TextView childItem =  convertView.findViewById(R.id.creditcarditem);
         childItem.setText(creditcard.getProductName());
         ImageView cardImage = convertView.findViewById(R.id.card_image);
-        cardImage.setBackgroundResource(creditcard.getCardImageRId());
+        cardImage.setBackgroundResource(creditcard.getCardImageRId(convertView));
         ImageUtility.scaleImage(50, 50,
-                creditcard.getCardImageRId(), cardImage, convertView);
+                creditcard.getCardImageRId(convertView), cardImage, convertView);
         return convertView;
     }
 

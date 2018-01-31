@@ -1,5 +1,9 @@
 package com.oscar.kabaoapp.DataProvider;
 
+import android.content.res.Resources;
+import android.view.View;
+
+import com.oscar.kabaoapp.Common.ResourceHelper;
 import com.oscar.kabaoapp.R;
 import com.oscar.kabaoapp.dataObject.BankName;
 import com.oscar.kabaoapp.dataObject.CreditCardTemplate;
@@ -12,36 +16,40 @@ import java.util.ArrayList;
  */
 
 public class CompanyStaticDataProvider {
-    private static int CompanyID = 1;
 
-    public static ArrayList<CreditcardCompany> AllCompanies = new ArrayList<CreditcardCompany>(){{
-        add(GetChaseBank());
-        add(GetAmex());
-        add(GetCiti());
-    }};
+    public static ArrayList<CreditcardCompany> GetAllCompanies(final View view) {
 
+        return new ArrayList<CreditcardCompany>() {{
+            add(GetChaseBank(view));
+            add(GetAmex(view));
+            add(GetCiti(view));
+        }};
+    }
 
-    private static CreditcardCompany GetChaseBank()
+    private static CreditcardCompany GetChaseBank(View view)
     {
-        CreditcardCompany company = new CreditcardCompany(CompanyID++, BankName.Chase);
-        company.setCompanyLogoRId(R.drawable.chasebank);
-        company.AddProducts(CreditCardStaticDataProvider.GetCompanyCards(company.GetCompanyName()));
+        CreditcardCompany company = new CreditcardCompany(BankName.Chase);
+        Resources rs = view.getResources();
+        String name = rs.getResourceEntryName(R.drawable.chasebank);
+
+        company.setCompanyLogoName(ResourceHelper.GetResName(R.drawable.chasebank, view));
+        company.AddProducts(CreditCardStaticDataProvider.GetCompanyCards(company.getCompanyName(), view));
         return company;
     }
 
-    private static CreditcardCompany GetAmex()
+    private static CreditcardCompany GetAmex(View view)
     {
-        CreditcardCompany company = new CreditcardCompany(CompanyID++, BankName.AmericanExpress);
-        company.setCompanyLogoRId(R.drawable.americanexpresslogo);
-        company.AddProducts(CreditCardStaticDataProvider.GetCompanyCards(company.GetCompanyName()));
+        CreditcardCompany company = new CreditcardCompany(BankName.AmericanExpress);
+        company.setCompanyLogoName(ResourceHelper.GetResName(R.drawable.americanexpresslogo, view));
+        company.AddProducts(CreditCardStaticDataProvider.GetCompanyCards(company.getCompanyName(), view));
         return company;
     }
 
-    private static CreditcardCompany GetCiti()
+    private static CreditcardCompany GetCiti(View view)
     {
-        CreditcardCompany company = new CreditcardCompany(CompanyID++, BankName.CITI);
-        company.setCompanyLogoRId(R.drawable.citibank);
-        company.AddProducts(CreditCardStaticDataProvider.GetCompanyCards(company.GetCompanyName()));
+        CreditcardCompany company = new CreditcardCompany(BankName.CITI);
+        company.setCompanyLogoName(ResourceHelper.GetResName(R.drawable.citibank, view));
+        company.AddProducts(CreditCardStaticDataProvider.GetCompanyCards(company.getCompanyName(), view));
         return company;
     }
 }

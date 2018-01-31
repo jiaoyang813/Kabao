@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.oscar.kabaoapp.Common.DataFormatter;
 import com.oscar.kabaoapp.Common.ImageUtility;
 import com.oscar.kabaoapp.Common.StmtDateHelper;
 import com.oscar.kabaoapp.OnClickListener.AddNewCardOnClickListener;
@@ -63,15 +64,17 @@ public class CardDetailView extends AppCompatActivity {
 
     private void setupUI()
     {
+        View v = this.findViewById(android.R.id.content);
+
         ImageView cardImage = findViewById(R.id.carddetail_cardimage);
-        cardImage.setBackgroundResource(card.getCardImageRId());
-        ImageUtility.scaleImage(128, 200, card.getCardImageRId(), cardImage, this.findViewById(android.R.id.content));
+        cardImage.setBackgroundResource(card.getCardImageRId(v));
+        ImageUtility.scaleImage(128, 200, card.getCardImageRId(v), cardImage, this.findViewById(android.R.id.content));
 
         TextView cardname = findViewById(R.id.carddetailview_cardname);
         cardname.setText(card.getCardNickname());
 
         TextView cardno = findViewById(R.id.carddetailview_cardno);
-        cardno.setText(card.getCardNo());
+        cardno.setText(DataFormatter.addSpaceInCardNumber(card.getCardNo()));
 
         TextView ccv = findViewById(R.id.carddetailview_ccv);
         ccv.setText(card.getCvv());
@@ -87,7 +90,7 @@ public class CardDetailView extends AppCompatActivity {
         stmtdate.setText(StmtDateHelper.GetStmtDate(stmtDayOfMonth));
 
         TextView creditline = findViewById(R.id.carddetailview_creditline);
-        creditline.setText(card.getCrediLine());
+        creditline.setText(card.getCreditLine());
 
         TextView features = findViewById(R.id.carddetailview_features);
         features.setText(card.getCardFeatures());
