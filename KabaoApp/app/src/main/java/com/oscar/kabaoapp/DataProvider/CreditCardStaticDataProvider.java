@@ -68,6 +68,20 @@ public class CreditCardStaticDataProvider {
     }
 
 
+    private static CreditCardTemplate GetChaseFreedomUnlimitedTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Chase);
+        cardTemplate.setProductName("Chase Freedom Unlimited");
+        cardTemplate.setCardIssuer(PaymentType.Visa);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.new_visa_big, view);
+        cardTemplate.setCardImageRId( R.drawable.sapphire_preferred_card, view);
+        cardTemplate.setCardFeatures(
+                "Earn unlimited 1.5% cash back\n " + "No annual fee\n");
+
+        return cardTemplate;
+    }
+
     private static CreditCardTemplate GetCitiDoubleCashTemplate(View view)
     {
         CreditCardTemplate cardTemplate = new CreditCardTemplate();
