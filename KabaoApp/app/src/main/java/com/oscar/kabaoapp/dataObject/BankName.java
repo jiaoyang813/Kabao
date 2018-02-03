@@ -10,5 +10,6 @@ public enum BankName {
     AmericanExpress,
     CITI,
     Discover,
-    WellsFargo
+    WellsFargo,
+    Other
 }

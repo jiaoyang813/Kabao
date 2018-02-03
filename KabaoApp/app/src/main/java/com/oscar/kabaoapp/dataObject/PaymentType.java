@@ -16,5 +16,6 @@ public enum PaymentType {
     JCP,
     Maestro,
     VisaElectron,
-    UnionPay
+    UnionPay,
+    Other
 }
