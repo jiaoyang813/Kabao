@@ -29,10 +29,7 @@ public class CompanyStaticDataProvider {
     private static CreditcardCompany GetChaseBank(View view)
     {
         CreditcardCompany company = new CreditcardCompany(BankName.Chase);
-        Resources rs = view.getResources();
-        String name = rs.getResourceEntryName(R.drawable.chasebank);
-
-        company.setCompanyLogoName(ResourceHelper.GetResName(R.drawable.chasebank, view));
+        company.setCompanyLogoName(ResourceHelper.GetResName(R.drawable.chase_logo, view));
         company.AddProducts(CreditCardStaticDataProvider.GetCompanyCards(company.getCompanyName(), view));
         return company;
     }
@@ -40,7 +37,7 @@ public class CompanyStaticDataProvider {
     private static CreditcardCompany GetAmex(View view)
     {
         CreditcardCompany company = new CreditcardCompany(BankName.AmericanExpress);
-        company.setCompanyLogoName(ResourceHelper.GetResName(R.drawable.americanexpresslogo, view));
+        company.setCompanyLogoName(ResourceHelper.GetResName(R.drawable.amex_logo, view));
         company.AddProducts(CreditCardStaticDataProvider.GetCompanyCards(company.getCompanyName(), view));
         return company;
     }
@@ -48,7 +45,7 @@ public class CompanyStaticDataProvider {
     private static CreditcardCompany GetCiti(View view)
     {
         CreditcardCompany company = new CreditcardCompany(BankName.CITI);
-        company.setCompanyLogoName(ResourceHelper.GetResName(R.drawable.citibank, view));
+        company.setCompanyLogoName(ResourceHelper.GetResName(R.drawable.citi_logo, view));
         company.AddProducts(CreditCardStaticDataProvider.GetCompanyCards(company.getCompanyName(), view));
         return company;
     }
