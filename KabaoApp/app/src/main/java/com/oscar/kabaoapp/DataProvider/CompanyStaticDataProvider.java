@@ -20,33 +20,21 @@ public class CompanyStaticDataProvider {
     public static ArrayList<CreditcardCompany> GetAllCompanies(final View view) {
 
         return new ArrayList<CreditcardCompany>() {{
-            add(GetChaseBank(view));
-            add(GetAmex(view));
-            add(GetCiti(view));
+            add(GetBankProduct(view, BankName.Chase, R.drawable.chase_logo));
+            add(GetBankProduct(view, BankName.AmericanExpress, R.drawable.amex_logo));
+            add(GetBankProduct(view, BankName.CITI, R.drawable.citi_logo));
+            add(GetBankProduct(view, BankName.Discover, R.drawable.discover_logo));
         }};
     }
 
-    private static CreditcardCompany GetChaseBank(View view)
+
+    private static CreditcardCompany GetBankProduct(View view, BankName bankName, int logoRid)
     {
-        CreditcardCompany company = new CreditcardCompany(BankName.Chase);
-        company.setCompanyLogoName(ResourceHelper.GetResName(R.drawable.chase_logo, view));
+        CreditcardCompany company = new CreditcardCompany(bankName);
+        company.setCompanyLogoName(ResourceHelper.GetResName(logoRid, view));
         company.AddProducts(CreditCardStaticDataProvider.GetCompanyCards(company.getCompanyName(), view));
         return company;
     }
 
-    private static CreditcardCompany GetAmex(View view)
-    {
-        CreditcardCompany company = new CreditcardCompany(BankName.AmericanExpress);
-        company.setCompanyLogoName(ResourceHelper.GetResName(R.drawable.amex_logo, view));
-        company.AddProducts(CreditCardStaticDataProvider.GetCompanyCards(company.getCompanyName(), view));
-        return company;
-    }
 
-    private static CreditcardCompany GetCiti(View view)
-    {
-        CreditcardCompany company = new CreditcardCompany(BankName.CITI);
-        company.setCompanyLogoName(ResourceHelper.GetResName(R.drawable.citi_logo, view));
-        company.AddProducts(CreditCardStaticDataProvider.GetCompanyCards(company.getCompanyName(), view));
-        return company;
-    }
 }

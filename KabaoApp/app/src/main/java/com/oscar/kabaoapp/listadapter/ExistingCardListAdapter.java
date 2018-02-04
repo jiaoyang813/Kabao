@@ -31,9 +31,6 @@ import java.util.Date;
 
 public class ExistingCardListAdapter extends BaseAdapter {
 
-    private String[] monthName = { "Jan", "Feb", "Mar", "Apri", "May", "Jun", "Jul",
-            "Aug", "Sept", "Oct", "Nov", "Dec" };
-
     private ArrayList<Creditcard> existingCards;
     private Context context;
 

@@ -33,41 +33,29 @@ public class AddCardActivity extends AppCompatActivity {
 
     public static final String CardTemplate = "com.oscar.kabaoapp.AddCard.CardTemplate";
 
+    private int lastExpandedPosition = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
-        //loadFakeData();
         productListView = findViewById(R.id.available_card_listview);
         loadStaticData(productListView);
         cardListAdapter = new AddCardListAdapter(AddCardActivity.this, creditCardCompanies);
         productListView.setAdapter(cardListAdapter);
 
-        collapseAll();
-        productListView.setOnGroupClickListener(myListGroupClicked);
         productListView.setOnChildClickListener(myListItemClicked);
+        productListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if (lastExpandedPosition != -1
+                        && groupPosition != lastExpandedPosition) {
+                    productListView.collapseGroup(lastExpandedPosition);
+                }
+                lastExpandedPosition = groupPosition;
+            }
+        });
     }
-
-    //our group listener
-    private ExpandableListView.OnGroupClickListener myListGroupClicked =
-            new ExpandableListView.OnGroupClickListener() {
-
-        public boolean onGroupClick(ExpandableListView parent, View v,
-                                    int groupPosition, long id) {
-            //get the group header
-            CreditcardCompany company =  creditCardCompanies.get(groupPosition);
-            //display it or do something with it
-            /*Toast.makeText(getBaseContext(), "Child on Header " + company.GetCompanyName(),
-                    Toast.LENGTH_LONG).show();
-            if(productListView.isGroupExpanded(groupPosition))
-            {
-                productListView.collapseGroup(groupPosition);
-            }else {
-                productListView.expandGroup(groupPosition);
-            }*/
-            return false;
-        }
-    };
 
 
     private ExpandableListView.OnChildClickListener myListItemClicked =

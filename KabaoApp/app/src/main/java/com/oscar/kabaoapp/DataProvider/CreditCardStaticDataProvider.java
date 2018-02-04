@@ -86,6 +86,14 @@ public class CreditCardStaticDataProvider {
             add(GetAmexServeTemplate(view));
 
 
+            add(GetDiscoverItTemplate(view));
+            add(GetDiscoverMilesTemplate(view));
+            add(GetDiscoverGasRestaurantTemplate(view));
+            add(GetDiscoverStudentTemplate(view));
+            add(GetDiscoverSecuredTemplate(view));
+            add(GetDiscoverStudentChromeTemplate(view));
+            add(GetDiscoverNHLTemplate(view));
+
             add(GetCustomTemplate(view));
         }};
     }
@@ -1009,7 +1017,7 @@ public class CreditCardStaticDataProvider {
         cardTemplate.setProductName("Discover IT Gas&Restaurant");
         cardTemplate.setCardIssuer(PaymentType.Discover);
         cardTemplate.setCardIssuerLogoRId( R.drawable.discover_logo, view);
-        cardTemplate.setCardImageRId(R.drawable.discover_it_gas, view);
+        cardTemplate.setCardImageRId(R.drawable.discover_student, view);
         return cardTemplate;
     }
 
@@ -1020,7 +1028,7 @@ public class CreditCardStaticDataProvider {
         cardTemplate.setProductName("Discover IT Gas&Restaurant");
         cardTemplate.setCardIssuer(PaymentType.Discover);
         cardTemplate.setCardIssuerLogoRId( R.drawable.discover_logo, view);
-        cardTemplate.setCardImageRId(R.drawable.discover_it_gas, view);
+        cardTemplate.setCardImageRId(R.drawable.discover_secured, view);
         return cardTemplate;
     }
 
@@ -1031,7 +1039,7 @@ public class CreditCardStaticDataProvider {
         cardTemplate.setProductName("Discover IT Gas&Restaurant");
         cardTemplate.setCardIssuer(PaymentType.Discover);
         cardTemplate.setCardIssuerLogoRId( R.drawable.discover_logo, view);
-        cardTemplate.setCardImageRId(R.drawable.discover_it_gas, view);
+        cardTemplate.setCardImageRId(R.drawable.discover_student, view);
         return cardTemplate;
     }
 
@@ -1042,7 +1050,7 @@ public class CreditCardStaticDataProvider {
         cardTemplate.setProductName("Discover IT Gas&Restaurant");
         cardTemplate.setCardIssuer(PaymentType.Discover);
         cardTemplate.setCardIssuerLogoRId( R.drawable.discover_logo, view);
-        cardTemplate.setCardImageRId(R.drawable.discover_it_gas, view);
+        cardTemplate.setCardImageRId(R.drawable.discover_nhl, view);
         return cardTemplate;
     }
 

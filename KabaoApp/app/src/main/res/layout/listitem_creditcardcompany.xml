@@ -10,6 +10,7 @@
         android:id="@+id/expandablelist_group_image"
         android:layout_width="100dp"
         android:layout_height="30dp"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="30dp"/>
 
     <TextView
