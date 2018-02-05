@@ -94,6 +94,28 @@ public class CreditCardStaticDataProvider {
             add(GetDiscoverStudentChromeTemplate(view));
             add(GetDiscoverNHLTemplate(view));
 
+            add(GetBarclayAABizTemplate(view));
+            add(GetBarclayAARedTemplate(view));
+            add(GetBarclayArrivalPlusTemplate(view));
+            add(GetBarclayAppleTemplate(view));
+            add(GetBarclayBarnesTemplate(view));
+            add(GetBarclayCarnivalTemplate(view));
+            add(GetBarclayChoiceTemplate(view));
+            add(GetBarclayDiamondTemplate(view));
+            add(GetBarclayFrontierTemplate(view));
+            add(GetBarclayHawaiianTemplate(view));
+            add(GetBarclayHollandTemplate(view));
+            add(GetBarclayJetblueTemplate(view));
+            add(GetBarclayRingTemplate(view));
+            add(GetBarclayMilesMoreTemplate(view));
+            add(GetBarclayNFLTemplate(view));
+            add(GetBarclayPricelineTemplate(view));
+            add(GetBarclayPrincessTemplate(view));
+            add(GetBarclayRCITemplate(view));
+            add(GetBarclayUberTemplate(view));
+            add(GetBarclayWyndhamTemplate(view));
+
+
             add(GetCustomTemplate(view));
         }};
     }
@@ -1055,6 +1077,229 @@ public class CreditCardStaticDataProvider {
     }
 
 
+    //endregion
+
+    //region barclay(20)
+    private static CreditCardTemplate GetBarclayAABizTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard AAdvantage Aviator Business");
+        cardTemplate.setCardIssuer(PaymentType.MasterCard);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.mastercard_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_aa_biz, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayAARedTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard AAdvantage Aviator Red");
+        cardTemplate.setCardIssuer(PaymentType.MasterCard);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.mastercard_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_aa, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayArrivalPlusTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Arrival Plus");
+        cardTemplate.setCardIssuer(PaymentType.MasterCard);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.mastercard_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_arrivalplus, view);
+        return cardTemplate;
+    }
+
+
+    private static CreditCardTemplate GetBarclayAppleTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Apple");
+        cardTemplate.setCardIssuer(PaymentType.Visa);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.visa_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_apple, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayBarnesTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Barnes&Noble");
+        cardTemplate.setCardIssuer(PaymentType.MasterCard);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.mastercard_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_noble, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayCarnivalTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Carnival World");
+        cardTemplate.setCardIssuer(PaymentType.MasterCard);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.mastercard_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_carnival, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayChoiceTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Choice Privileges");
+        cardTemplate.setCardIssuer(PaymentType.Visa);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.visa_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclaychoice, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayDiamondTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Diamond Resorts International");
+        cardTemplate.setCardIssuer(PaymentType.MasterCard);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.mastercard_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_diamondresortint, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayFrontierTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Forntier Airlines");
+        cardTemplate.setCardIssuer(PaymentType.MasterCard);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.mastercard_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_fontier, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayHawaiianTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Hawaiian Airlines");
+        cardTemplate.setCardIssuer(PaymentType.MasterCard);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.mastercard_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_hawaiianairlines, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayHollandTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Holland America Line");
+        cardTemplate.setCardIssuer(PaymentType.Visa);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.visa_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_holland, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayJetblueTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard JetBlue");
+        cardTemplate.setCardIssuer(PaymentType.MasterCard);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.mastercard_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_jetblue, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayRingTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Ring");
+        cardTemplate.setCardIssuer(PaymentType.MasterCard);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.mastercard_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_ring, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayMilesMoreTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Miles&More");
+        cardTemplate.setCardIssuer(PaymentType.MasterCard);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.mastercard_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_milesmore, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayNFLTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard NFL Extra Points");
+        cardTemplate.setCardIssuer(PaymentType.Visa);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.visa_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_nflextra, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayPricelineTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Priceline Rewards");
+        cardTemplate.setCardIssuer(PaymentType.Visa);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.visa_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_priceline, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayPrincessTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Princess Cruises Rewards");
+        cardTemplate.setCardIssuer(PaymentType.Visa);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.visa_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_princess, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayRCITemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard RCI Elite Rewards");
+        cardTemplate.setCardIssuer(PaymentType.MasterCard);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.mastercard_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_rci, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayUberTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Uber");
+        cardTemplate.setCardIssuer(PaymentType.Visa);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.visa_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_uber, view);
+        return cardTemplate;
+    }
+
+    private static CreditCardTemplate GetBarclayWyndhamTemplate(View view)
+    {
+        CreditCardTemplate cardTemplate = new CreditCardTemplate();
+        cardTemplate.setBankName(BankName.Barclaycard);
+        cardTemplate.setProductName("Barclaycard Wyndham Rewards");
+        cardTemplate.setCardIssuer(PaymentType.Visa);
+        cardTemplate.setCardIssuerLogoRId( R.drawable.visa_logo, view);
+        cardTemplate.setCardImageRId(R.drawable.barclay_wyndham, view);
+        return cardTemplate;
+    }
     //endregion
 
     private static CreditCardTemplate GetCustomTemplate(View view)

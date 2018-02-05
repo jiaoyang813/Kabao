@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.oscar.kabaoapp.Common.AdHelper;
 import com.oscar.kabaoapp.Common.DataFormatter;
 import com.oscar.kabaoapp.Common.ImageUtility;
 import com.oscar.kabaoapp.Common.StmtDateHelper;
@@ -44,6 +45,8 @@ public class CardDetailView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_detail_view);
         setupActionBar();
+        View currentView = findViewById(android.R.id.content);
+        AdHelper.setupAds(currentView, R.id.adView_detailview);
         Intent intent = getIntent();
         int cardId = intent.getIntExtra(CardDetail, -1);
 

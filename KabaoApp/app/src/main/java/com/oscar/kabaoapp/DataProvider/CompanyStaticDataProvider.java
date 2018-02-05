@@ -24,6 +24,7 @@ public class CompanyStaticDataProvider {
             add(GetBankProduct(view, BankName.AmericanExpress, R.drawable.amex_logo));
             add(GetBankProduct(view, BankName.CITI, R.drawable.citi_logo));
             add(GetBankProduct(view, BankName.Discover, R.drawable.discover_logo));
+            add(GetBankProduct(view, BankName.Barclaycard, R.drawable.barclaycard_logo));
         }};
     }
 

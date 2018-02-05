@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.oscar.kabaoapp.Common.AdHelper;
 import com.oscar.kabaoapp.Database.AppDatabase;
 import com.oscar.kabaoapp.Database.KabaoDatabase;
 import com.oscar.kabaoapp.OnClickListener.AddNewCardOnClickListener;
@@ -42,14 +43,14 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     AddedCreditCardViewModel addedCreditCardViewModel;
-    private final String AppID = "ca-app-pub-9690495249654800~4847942125";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setupAds();
+        View currentView = findViewById(android.R.id.content);
+        AdHelper.setupAds(currentView, R.id.adView_main);
         setupActionBar();
-        //setupNavigationView();
 
         pushFragment(new MycardFragment());
         addedCreditCardViewModel = ViewModelProviders.of(this).get(AddedCreditCardViewModel.class);
@@ -60,15 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 pushFragment(mycardFragment);
             }
         });
-
-    }
-
-    private void setupAds()
-    {
-        MobileAds.initialize(this, AppID);
-        AdView mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
 
     }
 

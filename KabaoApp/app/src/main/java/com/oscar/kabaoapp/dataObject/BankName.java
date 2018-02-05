@@ -11,5 +11,6 @@ public enum BankName {
     CITI,
     Discover,
     WellsFargo,
+    Barclaycard,
     Other
 }
